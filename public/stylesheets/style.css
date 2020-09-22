@@ -1,0 +1,98 @@
+/* general  */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: 'Open Sans';
+  font-size: 62.5% ;
+}
+
+/* styling home */
+.header-home {
+  background-image: url('../images/map-amsterdam.jpg');
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.blocks-home {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  height: 100%;
+}
+
+.blocks-home div {
+  border: 10px solid black;
+  box-sizing: border-box;
+}
+
+.blocks-home div:nth-child(-n+5){
+  border-top: none;
+}
+
+.blocks-home div:nth-child(5n+1){
+  border-left: none;
+}
+
+.blocks-home div:nth-child(5){
+  border-right: none;
+}
+
+.blocks-home div:first-child {
+  width: 28.75vw;
+  height: 33vh;
+  background-color: #fdec17;
+  mix-blend-mode: multiply;
+}
+
+.blocks-home div:nth-child(2){
+  width: 17.5vw;
+  height: 33vh;
+}
+
+.blocks-home div:nth-child(3),
+.blocks-home div:nth-child(8){
+  width: 28.75vw;
+  height: 33vh;
+  background-color:#f23947;
+  mix-blend-mode: multiply;
+}
+
+.blocks-home div:nth-child(4){
+  width: 17.5vw;
+  height: 15vh;
+}
+
+.blocks-home div:nth-child(5){
+  width: 7.5vw;
+  height: 15vh;
+}
+
+.blocks-home div:nth-child(6){
+  width: 7.5vw;
+  height: 33vh;
+}
+
+.blocks-home div:nth-child(7){
+  width: 38.75vw;
+  height: 33vh;
+  background-color: black;
+}
+
+.blocks-home div:nth-child(9) {
+  width: 17.5vw;
+  height: 35vh;
+  background-color: #012d76;
+  mix-blend-mode: multiply;
+}
+
+.blocks-home div:nth-child(10){
+  width: 7.5vw;
+  height: 33vh;
+}
+
+
