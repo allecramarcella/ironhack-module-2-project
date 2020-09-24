@@ -1,12 +1,39 @@
 
-{{#if userInSession}}
-    <h2>Welcome, {{ userInSession.username }}!</h2>
-    <img src="{{ userInSession.profileImgUrl }}" alt="Profile picture: "{{ userInSession.username }}>
-    <p>This is your profile page my friend!</p>
+<div class="profile-page">
+  <div class="nav-profile-background"></div>
+  <nav>
+    
+    <div>
+      <img src="../images/logo horizontaal.png" alt="Logo ST_ART horizontaal ">
+    </div>
+    <div>
+      <a href="/login">Login</a>
+      <a href="/signup">Signup</a>
+    </div>
+  </nav>
 
-    <form id="logout-form" action="/logout" method="POST">
-      <button>Logout</button>
-    </form>
-{{else}}
-    <p>Still no logged in user, sorry!</p>
-{{/if}}
+  <div class='main-profilepage'>
+    {{#if userInSession}}
+        <h2>Welcome, {{ userInSession.username }}!</h2>
+        <img src="{{ userInSession.profileImgUrl }}" alt="Profile picture: "{{ userInSession.username }}>
+        <p>This is your profile page my friend!</p>
+
+        <form id="logout-form" action="/logout" method="POST">
+          <button>Logout</button>
+        </form>
+    {{else}}
+        <p>Still no logged in user, sorry!</p>
+    {{/if}}
+
+  </div>
+
+
+
+
+</div>
+
+
+
+
+
+

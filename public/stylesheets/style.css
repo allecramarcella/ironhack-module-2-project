@@ -19,23 +19,23 @@ a {
 }
 
 
-
-
 /* styling home */
 .header-home {
-  background-image: url('../images/background-home.jpg');
+  background-image: url('../images/background-homekopie.jpg');
+  background-position: top;
   height: 100%;
   background-size: cover;
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
+  top: 0
 }
 
 .nav-background {
-  height: 200px;
+  height: 210px;
   background-image: url('../images/nav-background.png');
+  background-position: bottom;
   mix-blend-mode: color-dodge;
-  overflow: hidden; 
-  top: 0;
-  width: 100vw; 
+  width: 100%;
+
 }
 
 .header-home nav {
@@ -44,7 +44,6 @@ a {
   align-items: flex-start;
   position: absolute;
   top: 20px;
-  z-index: 1;
   width: 100%;
 }
 
@@ -52,20 +51,46 @@ a {
   margin: 0 40px;
 }
 
-.header-home nav img {
+.header-home nav img,
+.profile-page nav img {
   width: 80px;
 }
 
-.header-home nav a {
+.header-home nav a,
+.profile-page nav a {
   font-size: 1.2rem;
   font-weight: 700;
   padding-left: 30px;
 }
 
 .main div img {
-  height: 20vh;
-  padding: 40px 400px 200px 40px;
-  background-color: black;
-  margin-left: 60px;
+  height: 50vh;
+  /* padding: 0px 200px 200px 40px;
+  margin-left: 60px; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
+/* Profile page user */
+.profile-page nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  height: 200px;
+}
+
+.nav-profile-background {
+  background-image: url('../images/nav-profilepage.png');
+  background-position: bottom;
+  height: 200px;
+  width: 100%;
+}
+
+/* city page */
+#map {
+  height: 500px;
+  width: 100%;
+}

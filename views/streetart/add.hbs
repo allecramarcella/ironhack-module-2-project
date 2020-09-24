@@ -1,0 +1,19 @@
+<p>Add new streetart</p>
+<div id="map"></div>
+<br>
+<br>
+<form method="POST" action="/streetart/add" enctype="multipart/form-data">
+  <input type="text" name="name" placeholder="name artwork">
+  <input type="text" name="artist" placeholder="name artist">
+  <input type="text" name="description" placeholder="description">
+ 
+  <label>Address</label>
+  <input type="text" name='address' placeholder="address" id="streetart-address">
+  <input type="text" name="latitude" placeholder="latitude" id="streetart-latitude">
+  <input type="text" name="longitude" placeholder="longitude"  id="streetart-longitude">
+
+  <label for="input-streetArt-picture">Upload picture street art </label>
+  <input type="file" name='streetArt-picture' id="input-streetArt-picture">
+ 
+  <input type="submit" name="" id="submit-streetart">
+</form>

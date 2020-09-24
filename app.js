@@ -58,5 +58,8 @@ app.use('/', index);
 const authRouter = require('./routes/auth.routes');
 app.use('/', authRouter);
 
+const streetArtRouter = require('./routes/streetart.routes');
+app.use('/streetart', streetArtRouter);
+
 
 module.exports = app;
