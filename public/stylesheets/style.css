@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 /* general  */
 html, body {
   margin: 0;
@@ -6,93 +8,64 @@ html, body {
 }
 
 body {
-  font-family: 'Open Sans';
+  font-family: 'Poppins', sans-serif;
   font-size: 62.5% ;
+  color: black;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+
+
 
 /* styling home */
 .header-home {
-  background-image: url('../images/map-amsterdam.jpg');
+  background-image: url('../images/background-home.jpg');
   height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-.blocks-home {
+.nav-background {
+  height: 200px;
+  background-image: url('../images/nav-background.png');
+  mix-blend-mode: color-dodge;
+  overflow: hidden; 
+  top: 0;
+  width: 100vw; 
+}
+
+.header-home nav {
   display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  height: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: absolute;
+  top: 20px;
+  z-index: 1;
+  width: 100%;
 }
 
-.blocks-home div {
-  border: 10px solid black;
-  box-sizing: border-box;
+.header-home nav div {
+  margin: 0 40px;
 }
 
-.blocks-home div:nth-child(-n+5){
-  border-top: none;
+.header-home nav img {
+  width: 80px;
 }
 
-.blocks-home div:nth-child(5n+1){
-  border-left: none;
+.header-home nav a {
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding-left: 30px;
 }
 
-.blocks-home div:nth-child(5){
-  border-right: none;
-}
-
-.blocks-home div:first-child {
-  width: 28.75vw;
-  height: 33vh;
-  background-color: #fdec17;
-  mix-blend-mode: multiply;
-}
-
-.blocks-home div:nth-child(2){
-  width: 17.5vw;
-  height: 33vh;
-}
-
-.blocks-home div:nth-child(3),
-.blocks-home div:nth-child(8){
-  width: 28.75vw;
-  height: 33vh;
-  background-color:#f23947;
-  mix-blend-mode: multiply;
-}
-
-.blocks-home div:nth-child(4){
-  width: 17.5vw;
-  height: 15vh;
-}
-
-.blocks-home div:nth-child(5){
-  width: 7.5vw;
-  height: 15vh;
-}
-
-.blocks-home div:nth-child(6){
-  width: 7.5vw;
-  height: 33vh;
-}
-
-.blocks-home div:nth-child(7){
-  width: 38.75vw;
-  height: 33vh;
+.main div img {
+  height: 20vh;
+  padding: 40px 400px 200px 40px;
   background-color: black;
+  margin-left: 60px;
 }
-
-.blocks-home div:nth-child(9) {
-  width: 17.5vw;
-  height: 35vh;
-  background-color: #012d76;
-  mix-blend-mode: multiply;
-}
-
-.blocks-home div:nth-child(10){
-  width: 7.5vw;
-  height: 33vh;
-}
-
 
