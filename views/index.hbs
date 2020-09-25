@@ -2,7 +2,7 @@
     <div class="nav-background"></div>
     <nav>
       <div>
-        <img src="../images/logo horizontaal.png" alt="Logo ST_ART horizontaal ">
+        {{!-- <img src="../images/logo horizontaal.png" alt="Logo ST_ART horizontaal "> --}}
       </div>
       <div>
         <a href="/login">Login</a>
@@ -11,9 +11,16 @@
     </nav>
    
   <div class='main'>
-    <div> 
-      <img src="../images/Logo ST_ART2.png" alt="Logo ST_ART">
-    </div>
-   
+      <div id="color-box-small">
+        <p>The streets are calling</p>
+        <p>Spot, Share and Visit St_ Art</p>
+        <form method="POST" action="">
+          <input type="search" name='search' placeholder="Find a city......." id="search-city" aria-label="Search for city">
+          <input type="submit" name="Search" id="submit-search" value='Go'>
+        </form>
+      </div>
+
+       <img src="../images/logo_black_yellow.png" alt="Logo ST_ART">
+      <div id="color-box-big"></div>
   </div>
 </header>

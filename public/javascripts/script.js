@@ -15,61 +15,61 @@ window.addEventListener('load', () => {
   });
 });
 
-// TODO: response.data.[restaurants], get('/streetart')??
-function getStreetArt() {
-  axios
-    .get('/streetart')
-    .then(response => {
-      console.log(response)
-      placeStreetArt(response.data.streetarts);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-}
+// // TODO: response.data.[restaurants], get('/streetart')??
+// function getStreetArt() {
+//   axios
+//     .get('/streetart')
+//     .then(response => {
+//       console.log(response)
+//       placeStreetArt(response.data.streetarts);
+//     })
+//     .catch(error => {
+//       console.log(error);
+//     });
+// }
 
-// TODO: placeRestaurants(....)
-function placeStreetArt(streetarts) {
-  console.log(streetarts)
-  for (let streetart of streetarts) {
-    const center = {
-      lat: streetart.location.coordinates[1],
-      lng: streetart.location.coordinates[0]
-    };
-    const pin = new google.maps.Marker({
-      position: center,
-      map: map,
-      title: streetart.name
-    });
-    markers.push(pin);
-  }
-}
+// // TODO: placeRestaurants(....)
+// function placeStreetArt(streetarts) {
+//   console.log(streetarts)
+//   for (let streetart of streetarts) {
+//     const center = {
+//       lat: streetart.location.coordinates[1],
+//       lng: streetart.location.coordinates[0]
+//     };
+//     const pin = new google.maps.Marker({
+//       position: center,
+//       map: map,
+//       title: streetart.name
+//     });
+//     markers.push(pin);
+//   }
+// }
 
-getStreetArt()
+// getStreetArt()
 
-// Geocoder
-const geocoder = new google.maps.Geocoder();
+// // Geocoder
+// const geocoder = new google.maps.Geocoder();
 
 
-// TODO: check getElementById('submit)
-document.getElementById('submit-streetart').addEventListener('click', () => {
-  geocodeAddress(geocoder, map);
-});
+// // TODO: check getElementById('submit)
+// document.getElementById('submit-streetart').addEventListener('click', () => {
+//   geocodeAddress(geocoder, map);
+// });
  
-function geocodeAddress(geocoder, resultsMap) {
-  const address = document.getElementById('streetart-address').value;
+// function geocodeAddress(geocoder, resultsMap) {
+//   const address = document.getElementById('streetart-address').value;
  
-  geocoder.geocode({ address: address }, (results, status) => {
-    if (status === 'OK') {
-      resultsMap.setCenter(results[0].geometry.location);
-      let marker = new google.maps.Marker({
-        map: resultsMap,
-        position: results[0].geometry.location
-      });
-      document.getElementById('streetart-latitude').value = results[0].geometry.location.lat();
-      document.getElementById('streetart-longitude').value = results[0].geometry.location.lng();
-    } else {
-      console.log(`Geocode was not successful for the following reason: ${status}`);
-    }
-  });
-}
+//   geocoder.geocode({ address: address }, (results, status) => {
+//     if (status === 'OK') {
+//       resultsMap.setCenter(results[0].geometry.location);
+//       let marker = new google.maps.Marker({
+//         map: resultsMap,
+//         position: results[0].geometry.location
+//       });
+//       document.getElementById('streetart-latitude').value = results[0].geometry.location.lat();
+//       document.getElementById('streetart-longitude').value = results[0].geometry.location.lng();
+//     } else {
+//       console.log(`Geocode was not successful for the following reason: ${status}`);
+//     }
+//   });
+// }
