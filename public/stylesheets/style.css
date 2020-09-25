@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-/* general  */
+
+/*//////////////////////////// GENERAL /////////////////////////////////*/
 html, body {
   margin: 0;
   padding: 0;
@@ -24,13 +25,12 @@ input {
 }
 
 
-/* styling home */
+/*//////////////////////////// HOME PAGE /////////////////////////////////*/
 .header-home {
   background-image: url('../images/background-homekopie.jpg');
   background-position: top;
   height: 100%;
   background-size: cover;
-  /* background-repeat: no-repeat; */
   top: 0
 }
 
@@ -95,6 +95,11 @@ input {
   border-bottom-left-radius: 30px;
 }
 
+#color-box-small span {
+  color: black;
+  font-size: 0.7rem;
+}
+
 #color-box-small p {
   text-align: right;
   margin-right: 30px;
@@ -104,7 +109,7 @@ input {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 0;
-  margin-top: 55px;
+  margin-top: 40px;
 
 }
 
@@ -124,6 +129,7 @@ input {
   margin-right: 30px;
 }
 
+/* SEARCH FIELD */
 #search-city {
   background-color: transparent;
   border: 2px solid black;
@@ -135,6 +141,54 @@ input {
   font-weight: 400;
   font-size: 1.1rem;
 }
+
+.pac-container{
+  background-color:  yellow;
+  border-radius: none;
+  font-family:  'Poppins', sans-serif;
+  margin-top: -10px;
+  outline: none;
+  border-top: none;
+  box-shadow: none;
+  height: 93px;
+}
+
+.pac-logo:after {
+  display: none;
+}
+.hdpi.pac-logo:after {
+  display: none;
+}
+
+.pac-item-selected,
+.pac-item-selected:hover {
+    background-color: #ff00c8;
+}
+
+.pac-matched {
+  font-weight: 400;
+}
+
+.pac-item {
+  border-top: none;
+  color: #ff00c8;
+}
+
+.pac-item-query {
+  font-size: 1rem;
+  padding: 0 10px;
+  color: #000
+}
+
+.pac-item:hover {
+  background-color: #ff00c8;
+  color: yellow;
+}
+
+.pac-icon {
+  display: none;
+}
+
 
 #submit-search {
   text-decoration: none;
@@ -149,7 +203,7 @@ input {
   font-size: 1.3rem;
 }
 
-/* Profile page user */
+/*//////////////////////////// USER PROFILE /////////////////////////////////*/
 .profile-page nav {
   display: flex;
   justify-content: space-between;

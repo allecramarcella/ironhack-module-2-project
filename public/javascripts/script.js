@@ -3,6 +3,16 @@
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// GOOGLE MAPS //////////////////////////////
 ////////////////////////////////////////////////////////////////////////
+
+function initialize() {
+  var input = document.getElementById('search-city');
+  new google.maps.places.Autocomplete(input);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
 window.addEventListener('load', () => {
   const ironhackBCN = {
     lat: 52.369284,
