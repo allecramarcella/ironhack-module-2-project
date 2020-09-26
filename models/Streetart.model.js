@@ -22,7 +22,8 @@ const streetartSchema = new Schema (
     details: {
       type: String, 
       maxlength: 300
-    }
+    },
+    uploader: { type: Schema.Types.ObjectId, 'ref':'User' }
   },
   {
     timestamps: true

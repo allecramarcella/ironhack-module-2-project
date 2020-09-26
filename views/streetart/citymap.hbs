@@ -1,1 +1,51 @@
-<div id="map"></div>
+
+<main id="map-page">
+
+
+
+  <div id="map"></div>
+  <div class="overview-info">   
+
+    <nav>
+      <a href="/">Home</a>
+      {{#if userInSession}}
+          <a href="/userProfile" >My profile</a>
+      {{/if}}
+    </nav>
+
+
+
+    <div class="add">
+      <h2>Add new Street Art</h2>
+      <p>Spotted some new Street Art?</p>
+       {{#if userInSession}}
+      <button>Add</button>
+      {{else}}
+      <p> <a href="/login">Login</a> to upload</p>
+      {{/if}}
+    </div>
+
+    <p>{{username}}</p>
+
+     {{!-- {{#each posts}}
+       <img src={{streetArtImgUrl}} alt="Picture of street art by {{artist}}">
+       <p>{{name}}</p>
+       <p>{{location}}</p>
+       {{/each}} --}}
+
+    {{#if this}} 
+    hello
+    {{/if}}
+
+
+    <div>
+      <h2>Latest uploads by community</h2>
+    </div>
+ 
+
+  </div>
+
+</main>
+
+
+

@@ -1,6 +1,47 @@
 
 
 ////////////////////////////////////////////////////////////////////////
+/////////////////////////////  SIGNIN LOGIN //////////////////////////////
+////////////////////////////////////////////////////////////////////////
+
+// const boxHomeSmall = document.getElementById('color-box-small')
+// const boxHomeBig = document.getElementById('color-box-big')
+// const logoHome = document.getElementById('logo-big')
+// const nav = document.getElementsByClassName('nav')[0]
+// const loginLink = document.getElementById('login')
+// const signupLink = document.getElementById('signup')
+
+// const overlay = document.createElement('div')
+// overlay.setAttribute('id', 'overlay')
+
+// const closeIcon = document.createElement('a')
+// closeIcon.setAttribute('id', 'closeIcon')
+// closeIcon.innerHTML = 'x'
+// closeIcon.href = '/'
+
+// const parentHomeScreen = document.getElementsByClassName('header-home')[0]
+// const navParent = document.getElementsByClassName('link-items')[0]
+
+
+
+
+// document.getElementById('login').addEventListener('click', function (event) {
+//   event.preventDefault()
+//   boxHomeBig.remove()
+//   boxHomeSmall.remove()
+//   logoHome.remove()
+//   loginLink.remove()
+//   signupLink.remove()
+
+//   parentHomeScreen.insertBefore(overlay, nav)
+//   navParent.prepend(closeIcon)
+// });
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////
 ///////////////////////////// GOOGLE MAPS //////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 

@@ -17,7 +17,7 @@ router.get('/signup', (req, res) => {
 router.post('/signup', fileUploader.single('profile-picture'), (req, res, next) => {
   const { username, email, password } = req.body;
   // const profileImgUrl = req.file.path;
-  console.log(req.file.path)
+  // console.log(req.file.path)
 
   if (!username || !email || !password) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
@@ -69,7 +69,7 @@ router.get('/login', (req, res)=> {
 });
 
 router.post('/login', (req, res, next) => {
-  console.log('SESSION =====> ', req.session)
+  // console.log('SESSION =====> ', req.session)
   const { email, password } = req.body;
 
   if (email === '' || password === '') {
@@ -98,7 +98,7 @@ router.post('/login', (req, res, next) => {
 ///////////////////////////// LOGOUT //////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
-router.post('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });
