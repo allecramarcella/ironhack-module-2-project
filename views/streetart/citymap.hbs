@@ -1,48 +1,55 @@
-
 <main id="map-page">
-
-
-
   <div id="map"></div>
-  <div class="overview-info">   
+  
+  <div class="right-side">   
+    <nav class="nav-small">
+      <a href="/"><img src="../images/logo_black_white_yellow.png" alt="Logo ST_ART"></a>
+      <div>
+        <a href="">Search City...</a>
+        {{#if user}}
+        <a href="/userProfile">My profile</a>
+        {{/if}}
+      </div>
+   </nav>
+   
+    <div class="overview-info">
 
-    <nav>
-      <a href="/">Home</a>
-      {{#if userInSession}}
-          <a href="/userProfile" >My profile</a>
+      {{#if user}}
+        <h1>Welcome, {{ user.username }}!</h1>
       {{/if}}
-    </nav>
 
-
-
-    <div class="add">
-      <h2>Add new Street Art</h2>
-      <p>Spotted some new Street Art?</p>
-       {{#if userInSession}}
-      <button>Add</button>
-      {{else}}
-      <p> <a href="/login">Login</a> to upload</p>
-      {{/if}}
+      <div class="add">
+        <h2>Add new Street Art</h2>
+        <p>Spotted some new Street Art?</p>
+        {{#if user}}
+          <button>Add</button>
+        {{else}}
+          <p> <a href="/login">Login</a> to upload</p>
+        {{/if}}
+      </div> 
+      
+      <div class="users-uploads">
+        {{#if user}}
+          <h2>Your latest uploads</h2>
+          {{#each streetArtByUser}}
+            <ul>
+              <li>{{name}}</li>
+              <li>{{artist}}</li>
+            </ul>
+          {{/each}}
+        {{/if}}
+      </div>
+      
+      <div class="uploads-community">
+        <h2>Latest post from the community</h2> 
+        {{#each posts}}
+          <ul>
+            <li>{{name}}</li>
+            <li>{{user.username}}</li>
+          </ul>
+        {{/each}}
+      </div>
     </div>
-
-    <p>{{username}}</p>
-
-     {{!-- {{#each posts}}
-       <img src={{streetArtImgUrl}} alt="Picture of street art by {{artist}}">
-       <p>{{name}}</p>
-       <p>{{location}}</p>
-       {{/each}} --}}
-
-    {{#if this}} 
-    hello
-    {{/if}}
-
-
-    <div>
-      <h2>Latest uploads by community</h2>
-    </div>
- 
-
   </div>
 
 </main>
