@@ -50,6 +50,13 @@ button:focus {
   outline:0;
 }
 
+hr {
+  background-color: #ff00c8;
+  opacity: 0.5;
+  height: 1px;
+  border: none;
+  margin: 60px 0;
+}
 
 /*//////////////////////////// HOME PAGE /////////////////////////////////*/
 .header-home {
@@ -273,7 +280,7 @@ button:focus {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  height: 150px;
+  height: 120px;
   width: 100vw;
   background-image: url('../images/nav-profilepage.png');
   background-size: contain;
@@ -282,8 +289,80 @@ button:focus {
 
 .profile-page nav a {
   padding-right: 30px;
-
 }
+
+.first-part{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  margin-top: 50px;
+}
+
+#box-big {
+  background-color: yellow;
+  border-top-right-radius: 30px;
+  width: 40vw;
+  height: 33vh;
+  margin: 50px 0 0 100px;
+  position: relative;
+  display: inline-block;
+}
+
+.main-profilepage hr {
+  margin: 80px 90px;
+}
+
+.main-profilepage h1 {
+  font-size: 5rem;
+  text-align: left;
+  line-height: 5rem;
+  position: absolute;
+  word-wrap: break-word;
+  width: 300px;
+  margin: -40px 0 0 -40px;
+}
+
+.first-part h2 {
+  position: absolute;
+  top: 60%;
+  right: 20%;
+  font-size: 1.5rem;
+}
+
+.first-part img {
+  border-radius: 90px; 
+  max-width: 115px;
+}
+
+.upload-profile-picture {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  height: 33vh;
+  width: 38vw;
+  margin-top: 40px;
+}
+
+.first-part form {
+  display: inline-block;
+}
+
+.my-uploads{
+  width: 80vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.my-uploads img {
+  width: 100px;
+  
+}
+
 
 
 /*//////////////////////////// STREET ART CITY PAGE /////////////////////////////////*/
@@ -293,13 +372,7 @@ button:focus {
   align-items: flex-start;
 }
 
-#map-page hr {
-  background-color: #ff00c8;
-  opacity: 0.5;
-  height: 1px;
-  border: none;
-  margin: 60px 0;
-}
+
 
 .right-side{
   width: 35vw;
@@ -373,8 +446,8 @@ button:focus {
 
 .uploads img{
   object-fit: cover;
-  width: 29vw;
   height: 140px;
+  width: 98.5%;
   border-bottom-left-radius: 15px;
   opacity: 0.8;
 }

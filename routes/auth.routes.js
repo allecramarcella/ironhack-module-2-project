@@ -6,6 +6,7 @@ const User = require('../models/User.model');
 const mongoose = require('mongoose');
 
 const fileUploader = require('../configs/cloudinary.config');
+const Streetart = require('../models/Streetart.model');
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
@@ -15,7 +16,7 @@ router.get('/signup', (req, res) => {
 })
 
 router.post('/signup', fileUploader.single('profile-picture'), (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { username, email, password , currentUser} = req.body;
   // const profileImgUrl = req.file.path;
   // console.log(req.file.path)
 
@@ -40,7 +41,7 @@ router.post('/signup', fileUploader.single('profile-picture'), (req, res, next) 
         username,
         email,
         passwordHash: hashedPassword,
-        profileImgUrl: req.file.path
+        currentUser
       });
     })
     .then(userFromDB => {
@@ -109,7 +110,13 @@ router.get('/logout', (req, res) => {
 ////////////////////////////////////////////////////////////////////////
 
 router.get('/userProfile', (req, res) => {
-  res.render('users/user-profile', { userInSession: req.session.currentUser }) ;
+  Streetart.find( {user: req.session.currentUser._id}).populate('user')
+    .then(streetarts => {
+      console.log(streetarts)
+      res.render('users/user-profile',  { posts: streetarts, user: req.session.currentUser})
+    })
+    .catch(err=> console.log(err))
+
 });
 
 

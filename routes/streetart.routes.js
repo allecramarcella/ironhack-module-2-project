@@ -99,11 +99,31 @@ router.post('/add', fileUploader.single('streetArt-picture'), (req, res, next) =
 router.get('/details-:id', (req, res) => {
    const urlId = req.params.id
    const streetArtId = Streetart.findById(urlId).populate('user')
-
-   streetArtId  
-    .then(streetart => res.render('streetart/details', streetart))
+   let currentUser 
+   
+  //  streetArtId  
+  //   .then(streetart => {
+  //     if(req.session.currentUser){
+  //       console.log(req.session.currentUser)
+  //       currentUser = req.session.currentUser._id
+  //       if(streetart.user._id === currentUser) {
+  //         User.findByIdAndUpdate({ _id: req.session.currentUser._id }, {$push: {currentUser: yes}})
+  //         res.render('streetart/details', streetart)
+  //       } 
+  //     } else {
+  //       res.render('streetart/details', streetart )
+  //     }
+      
+    // })
+    // .catch(err => console.log(err))
+  
+  streetArtId 
+    .then(streetart => {
+      res.render('streetart/details', streetart)
+    })
     .catch(err => console.log(err))
-  })
+
+})
 
 
 

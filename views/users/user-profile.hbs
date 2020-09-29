@@ -3,22 +3,54 @@
 
   
   <nav>
-
-      {{!-- <a href="/"><img src="../images/logo_black_white_yellow.png" alt="Logo ST_ART"></a>      --}}
       <a href="javascript:javascript:history.go(-1)" >< back</a>
-      <a href="/logout">logout</a>
-     
+      <a href="/logout">Logout</a>
   </nav>
 
-
   <div class='main-profilepage'>
-    {{#if userInSession}}
-        <h2>Welcome, {{ userInSession.username }}!</h2>
-        <img src="{{ userInSession.profileImgUrl }}" alt="Profile picture: "{{ userInSession.username }}>
-        <p>This is your profile page my friend!</p>
+    {{#if user}}
+    <div class="first-part">
+        <div id="box-big">
+          <h1>User profile</h1>
+          {{else}}
+          <h2>You are not logged in, please <a href="/login">login</a>!</h2>
+    {{/if}}
+    {{#if user}}
+          <h2>Welcome, {{ user.username }}!</h2>
+        </div>
+        <div class="upload-profile-picture">
+          <img src="{{ user.profileImgUrl }}" alt="Profile picture: "{{ user.username }}>
+          <form action="/signup" method="POST" enctype="multipart/form-data">
+            <label for="input-profile-picture">Upload profile picture</label>
+            <input type="file" name='profile-picture' id="input-profile-picture"> 
+          </form>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="my-uploads">
+      <h2>Your uploads</h2>
+      {{#each posts}}
+
+      <div class="img-user-uploads">
+        <img src={{streetArtImgUrl}} alt="picture street art of" {{artist}} >
+      </div>
+      <div class="info-uploads">
+        <p>{{location}}</p>
+        <p>{{createdAt}}</p>
+        <a href="/streetart/details-{{id}}">Details</a>
+      </div>
+      {{/each}}
 
 
-    {{else}}
+    </div>
+
+
+
+
+
+ 
         <p>You are not loggedin, please login!</p>
     {{/if}}
 

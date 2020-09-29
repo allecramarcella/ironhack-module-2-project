@@ -25,6 +25,9 @@ const userSchema = new Schema (
       type: String,
       default: './images/default_avatar.jpg'
     },
+    currentUser: {
+      type: String,
+    },
     posts: [ {type: Schema.Types.ObjectId, 'ref':'Streetart' }]
   },
   {
