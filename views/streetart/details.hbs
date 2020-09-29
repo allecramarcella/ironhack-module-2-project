@@ -1,0 +1,24 @@
+<main id="map-page">
+  <div id="street-art">
+    <img src={{streetArtImgUrl}} alt="picture street art of" {{artist}}>
+  </div>
+  
+  <div class="right-side">   
+      {{> navSmall}}
+   
+    <div class="overview-info">
+      <a href="javascript:javascript:history.go(-1)"> < back</a>
+     <p>Created at: {{createdAt}}</p>
+     <p>Location</p>
+     <p>Created by {{artist}}</p>
+     <p>Name artwork {{name}}</p>
+     {{#if description}}
+     <p>{{description}}</p>
+     {{/if}}
+     <p>Uploaded by: {{user.username}}</p>
+     <img src={{user.profileImgUrl}} alt="Profile picture of user {{user.username}}">   
+ 
+    </div>
+ </div>
+
+</main>

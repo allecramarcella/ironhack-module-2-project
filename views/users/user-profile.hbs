@@ -1,16 +1,15 @@
 
 <div class="profile-page">
-  <div class="nav-profile-background"></div>
+
+  
   <nav>
-    
-    <div>
-      <img src="../images/logo horizontaal.png" alt="Logo ST_ART horizontaal ">
-    </div>
-    <div>
-      <a href="/login">Login</a>
-      <a href="/signup">Signup</a>
-    </div>
+
+      {{!-- <a href="/"><img src="../images/logo_black_white_yellow.png" alt="Logo ST_ART"></a>      --}}
+      <a href="javascript:javascript:history.go(-1)" >< back</a>
+      <a href="/logout">logout</a>
+     
   </nav>
+
 
   <div class='main-profilepage'>
     {{#if userInSession}}
@@ -18,11 +17,9 @@
         <img src="{{ userInSession.profileImgUrl }}" alt="Profile picture: "{{ userInSession.username }}>
         <p>This is your profile page my friend!</p>
 
-        <form id="logout-form" action="/logout" method="POST">
-          <button>Logout</button>
-        </form>
+
     {{else}}
-        <p>Still no logged in user, sorry!</p>
+        <p>You are not loggedin, please login!</p>
     {{/if}}
 
   </div>

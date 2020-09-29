@@ -1,13 +1,12 @@
 <header class="header-home">
-  <div class="nav">
+ <div class="nav">
     <div id="overlay"></div>
     <div class="nav-background"></div>
     <nav>
       <div>
-        {{!-- <img src="../images/logo horizontaal.png" alt="Logo ST_ART horizontaal "> --}}
-      </div>
+         <a href="/"><img src="../images/logo_black_white_yellow.png" alt="Logo ST_ART"></a>      </div>
       <div class="link-items">
-        <a href="/" id="closeIcon">x</a>
+        <a href="javascript:javascript:history.go(-1)" id="closeIcon">x</a>
       </div>
     </nav>
   </div>
@@ -30,6 +29,7 @@
       <input type="file" name='profile-picture' id="input-profile-picture"> --}}
 
       <button type="submit">Create account</button>
+      <p>Already an account? Go to <a href="/login">login</a></p>
 
       {{#if errorMessage}}
         <p class="error">{{errorMessage}}</p>

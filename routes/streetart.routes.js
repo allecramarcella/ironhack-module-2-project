@@ -5,6 +5,8 @@ const Streetart = require('../models/Streetart.model');
 const User = require('../models/User.model')
 const fileUploader = require('../configs/cloudinary.config');
 const checkLogin = require('../middleware/checkLogin');
+const app = require('../app');
+const { urlencoded } = require('body-parser');
 
 
 router.get('/', (req, res, next) => {
@@ -17,16 +19,12 @@ router.get('/', (req, res, next) => {
   //   res.render('streetart/citymap')
   // }
 
-  if(req.session.currentUser){
-    console.log(req.session.currentUser)
-    
+  if(req.session.currentUser){    
     const streetArtByUser = Streetart.find( {user: req.session.currentUser._id}).populate('user')
     const posts = Streetart.find().populate('user')
 
     Promise.all([streetArtByUser, posts])
     .then(result => {
-      console.log('Result 1:', result[0])
-      console.log('Result 2:', result[1])
       res.render('streetart/citymap', {streetArtByUser: result[0], posts: result[1], user: req.session.currentUser})
     })
     .catch(err => console.log(err)) 
@@ -97,6 +95,15 @@ router.post('/add', fileUploader.single('streetArt-picture'), (req, res, next) =
     .catch(err => console.log(err))
  })
 
+
+router.get('/details-:id', (req, res) => {
+   const urlId = req.params.id
+   const streetArtId = Streetart.findById(urlId).populate('user')
+
+   streetArtId  
+    .then(streetart => res.render('streetart/details', streetart))
+    .catch(err => console.log(err))
+  })
 
 
 

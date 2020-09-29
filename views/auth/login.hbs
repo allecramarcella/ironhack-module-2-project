@@ -4,10 +4,9 @@
     <div class="nav-background"></div>
     <nav>
       <div>
-        {{!-- <img src="../images/logo horizontaal.png" alt="Logo ST_ART horizontaal "> --}}
-      </div>
+         <a href="/"><img src="../images/logo_black_white_yellow.png" alt="Logo ST_ART"></a>      </div>
       <div class="link-items">
-        <a href="/" id="closeIcon">x</a>
+        <a href="javascript:javascript:history.go(-1)" id="closeIcon">x</a>
       </div>
     </nav>
   </div>
@@ -24,6 +23,8 @@
       <input type="password" name="password" id="input-password" placeholder="********" />
 
       <button type="submit">Login</button>
+
+      <p>No account yet? <a href="/signup">Signup</a> first.</p>
 
       {{#if errorMessage}}
         <p class="error">{{errorMessage}}</p>
