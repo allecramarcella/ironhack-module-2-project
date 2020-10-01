@@ -5,7 +5,7 @@ const streetartSchema = new Schema (
   {
     streetArtImgUrl: {
       type: String,
-      required: [true, 'A picture of the graffiti is required.']
+      required: [true, 'A picture of the street art is required.']
     },
     name: {
       type: String,
@@ -18,6 +18,14 @@ const streetartSchema = new Schema (
     location : {
       type: {type: String},
       coordinates: [Number],
+    },
+    city: {
+      type: String,
+      required: [true, 'The city is required.']
+    },
+    address: {
+      type: String,
+      required: [true, 'Address is required.']
     },
     details: {
       type: String, 

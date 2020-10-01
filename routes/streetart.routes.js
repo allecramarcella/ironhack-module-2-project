@@ -8,76 +8,42 @@ const checkLogin = require('../middleware/checkLogin');
 const app = require('../app');
 const { urlencoded } = require('body-parser');
 
+router.get('/add', (req, res) => {
+  res.render('streetart/add')
+})
 
-router.get('/', (req, res, next) => {
-  // if(req.session.currentUser) {
-  //   const userInSession = await User.findById({_id: req.session.currentUser._id}).populate('posts')
-  //   console.log(userInSession)
-  
-  //   res.render('streetart/citymap', userInSession)
-  // } else {
-  //   res.render('streetart/citymap')
-  // }
+router.get('/:cityName', (req, res, next) => {
+  const { cityName } = req.params
 
   if(req.session.currentUser){    
-    const streetArtByUser = Streetart.find( {user: req.session.currentUser._id}).populate('user')
+    const streetArtByUser = Streetart.find( {user: req.session.currentUser._id, city: cityName}).populate('user')
     const posts = Streetart.find().populate('user')
 
     Promise.all([streetArtByUser, posts])
     .then(result => {
-      res.render('streetart/citymap', {streetArtByUser: result[0], posts: result[1], user: req.session.currentUser})
+      res.render('streetart/citymap', {streetArtByUser: result[0], posts: result[1], user: req.session.currentUser, city: cityName})
     })
     .catch(err => console.log(err)) 
   } else {
     Streetart.find()
     .populate('user')
-    .then(allStreetArt => res.render('streetart/citymap', { posts: allStreetArt}))
+    .then(allStreetArt => res.render('streetart/citymap', { posts: allStreetArt, city: cityName}))
     .catch(err => console.log(err))
   }
 });
 
-router.get('/add', (req, res) => {
-  res.render('streetart/add')
-})
-
-// router.post('/add', fileUploader.single('streetArt-picture'), async (req, res, next) => {
-//   const { name, artist, details, longitude, latitude } = req.body
-//   // console.log(req.body)
-//   const streetArtImgUrl = req.file.path
-//   // console.log(streetArtImgUrl)
-
-   
-//   const newStreetArt = new Streetart({
-//     name, 
-//     artist, 
-//     details,
-//     streetArtImgUrl,
-//     location: {
-//       type: 'Point',
-//       coordinates: [longitude, latitude]
-//     },
-//     uploader: req.session.currentUser._id
-//   })
-
-//   try{
-//     const newPost = await newStreetArt.save()
-//     console.log('test:',  newPost)
-//     await User.findByIdAndUpdate({_id: req.session.currentUser._id}, {$addToSet:{posts:newPost._id} })
-//   }
-//   catch(error){
-//     console.log(error)
-//   }
-// })
 
 
 router.post('/add', fileUploader.single('streetArt-picture'), (req, res, next) => {
-  const { name, artist, details, longitude, latitude} = req.body
+  const { name, artist, details, address, city} = req.body
   const streetArtImgUrl = req.file.path
 
   const newStreetArt = new Streetart({
     name, 
     artist, 
     details,
+    city,
+    address,
     streetArtImgUrl,
     location: {
       type: 'Point',
@@ -89,6 +55,7 @@ router.post('/add', fileUploader.single('streetArt-picture'), (req, res, next) =
 
   newStreetArt.save()
     .then(streetart => {
+      console.log(streetart)
       return User.findByIdAndUpdate({ _id: req.session.currentUser._id }, {$push: { posts: streetart._id}})
     })
     .then(()=> res.redirect('/streetart'))
@@ -99,7 +66,7 @@ router.post('/add', fileUploader.single('streetArt-picture'), (req, res, next) =
 router.get('/details-:id', (req, res) => {
    const urlId = req.params.id
    const streetArtId = Streetart.findById(urlId).populate('user')
-   let currentUser 
+  //  let currentUser 
    
   //  streetArtId  
   //   .then(streetart => {

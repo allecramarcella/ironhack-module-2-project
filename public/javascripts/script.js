@@ -1,56 +1,35 @@
 
 
 ////////////////////////////////////////////////////////////////////////
-/////////////////////////////  SIGNIN LOGIN //////////////////////////////
-////////////////////////////////////////////////////////////////////////
-
-// const boxHomeSmall = document.getElementById('color-box-small')
-// const boxHomeBig = document.getElementById('color-box-big')
-// const logoHome = document.getElementById('logo-big')
-// const nav = document.getElementsByClassName('nav')[0]
-// const loginLink = document.getElementById('login')
-// const signupLink = document.getElementById('signup')
-
-// const overlay = document.createElement('div')
-// overlay.setAttribute('id', 'overlay')
-
-// const closeIcon = document.createElement('a')
-// closeIcon.setAttribute('id', 'closeIcon')
-// closeIcon.innerHTML = 'x'
-// closeIcon.href = '/'
-
-// const parentHomeScreen = document.getElementsByClassName('header-home')[0]
-// const navParent = document.getElementsByClassName('link-items')[0]
-
-
-
-
-// document.getElementById('login').addEventListener('click', function (event) {
-//   event.preventDefault()
-//   boxHomeBig.remove()
-//   boxHomeSmall.remove()
-//   logoHome.remove()
-//   loginLink.remove()
-//   signupLink.remove()
-
-//   parentHomeScreen.insertBefore(overlay, nav)
-//   navParent.prepend(closeIcon)
-// });
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////
 ///////////////////////////// GOOGLE MAPS //////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
+//////////////////////// AUTOCOMPLETE HOME //////////////////////////
+const inputHome = document.getElementById('search-city');
+const goButton = document.getElementById('submit-search')
+
+
 function initialize() {
-  var input = document.getElementById('search-city');
-  new google.maps.places.Autocomplete(input);
+  const autocomplete = new google.maps.places.Autocomplete(inputHome)
+  let cityName 
+
+  autocomplete.addListener('place_changed', event => {
+    const autocompleteObject  = autocomplete.getPlace()
+    cityName = autocompleteObject.address_components[1].long_name
+  })
+
+  goButton.addEventListener('click', event => {
+    event.preventDefault()
+    console.log('test')
+    if(cityName){
+      window.location.href = `/streetart/${cityName}`
+    } 
+  })
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+
 
 
 
@@ -64,7 +43,46 @@ window.addEventListener('load', () => {
     zoom: 13,
     center: ironhackBCN
   });
-});
+})
+
+
+////////////////// GEOCODE////////////////////////
+
+//Get location form
+const addForm = document.getElementById('add-st-art-form')
+
+
+//Listen for input change
+addForm.addEventListener('change', geocode);
+
+// Geocode function
+function geocode(e){
+  e.preventDefault();
+
+  const location = document.getElementById('streetart-address').value;
+
+  axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+    params: {
+      address: location,
+      key: 'AIzaSyCOHNeE4wE0P3AqScEVYGTYavwHactzJJs'
+    }
+  })
+  .then(response => {
+    console.log(response.data.results[0].geometry.location.lat)
+    //formatted address
+  
+    // asign hidden inputfields
+    document.getElementById('streetart-city').value = response.data.results[0].address_components[4].long_name
+    document.getElementById('streetart-lat').value = response.data.results[0].geometry.location.lat
+    document.getElementById('streetart-long').value = response.data.results[0].geometry.location.lng
+
+  })
+  .catch(err => console.log(err))
+}
+
+
+
+
 
 // // TODO: response.data.[restaurants], get('/streetart')??
 // function getStreetArt() {
