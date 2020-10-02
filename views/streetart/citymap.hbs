@@ -6,15 +6,15 @@
    
     <div class="overview-info">
 
-     
+  
       <h1>[...] Street Art</h1>
-      
 
-      <div class="add">
+
+      <div class="add" id="add-art">
         <h2>Add new Street Art</h2>
         <p>Spotted some new Street Art?</p>
         {{#if user}}
-          <button>Add</button>
+          <button id="add-btn-citymap">Add</button>
         {{else}}
           <p> <a href="/login"> Login</a> to upload</p>
         {{/if}}

@@ -1,144 +1,151 @@
 
 
-////////////////////////////////////////////////////////////////////////
-///////////////////////////// GOOGLE MAPS //////////////////////////////
-////////////////////////////////////////////////////////////////////////
-
 //////////////////////// AUTOCOMPLETE HOME //////////////////////////
 const inputHome = document.getElementById('search-city');
 const goButton = document.getElementById('submit-search')
 
 
 function initialize() {
+  inputHome.value = ''
   const autocomplete = new google.maps.places.Autocomplete(inputHome)
+  autocomplete.setFields(["address_component", "geometry"])
+
   let cityName 
+  let long
+  let lat
 
   autocomplete.addListener('place_changed', event => {
     const autocompleteObject  = autocomplete.getPlace()
+    console.log(autocompleteObject)
+  
     cityName = autocompleteObject.address_components[1].long_name
+    lat = autocompleteObject.geometry.location.lat()
+    long = autocompleteObject.geometry.location.lng()
   })
 
   goButton.addEventListener('click', event => {
     event.preventDefault()
-    console.log('test')
     if(cityName){
-      window.location.href = `/streetart/${cityName}`
+      window.location.href = `/streetart/${cityName}&${long}&${lat}`
     } 
   })
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-
-
-
+//////////////////////// GOOGLE MAPS STREET ART BY CITY PAGE  //////////////////////////
 
 window.addEventListener('load', () => {
-  const ironhackBCN = {
-    lat: 52.369284,
-    lng: 4.882907
-  };
+  // const ironhackBCN = {
+  //   lat: 52.369284,
+  //   lng: 4.882907
+  // };
+
+  let url = window.location.href
+  let arrUrl = url.split('&')
+
+  const coordinates = {
+    lat: parseInt(arrUrl[2]),
+    lng: parseInt(arrUrl[1])
+  }
  
   const map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 13,
-    center: ironhackBCN
+    zoom: 10,
+    center: coordinates
   });
 })
 
 
-////////////////// GEOCODE////////////////////////
 
-//Get location form
-const addForm = document.getElementById('add-st-art-form')
+//////////////////////// EVENT LISTNER ADD BTN //////////////////////////
+
+const addBtn = document.getElementById('add-btn-citymap')
 
 
-//Listen for input change
-addForm.addEventListener('change', geocode);
+addBtn.addEventListener('click', event => {
+  event.preventDefault()
 
-// Geocode function
-function geocode(e){
-  e.preventDefault();
+  addBtn.remove()
 
-  const location = document.getElementById('streetart-address').value;
+  const addFormHTML = `
+  <form method="POST" action="/streetart/add" enctype="multipart/form-data" id="add-st-art-form">
+  <input type="text" name="name" placeholder="name artwork" >
+  <input type="text" name="artist" placeholder="name artist" >
+ 
+  <label>Address</label>
+  <input type="text" name='address' placeholder="Enter your address" id="streetart-address2">
 
-  axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-    params: {
-      address: location,
-      key: 'AIzaSyCOHNeE4wE0P3AqScEVYGTYavwHactzJJs'
-    }
-  })
-  .then(response => {
-    console.log(response.data.results[0].geometry.location.lat)
-    //formatted address
+  <label>Street</label>
+  <input type="text" name='street' id="route"  class="field" disabled="true" >
+  <label>Number</label>
+  <input  type="number" name='street-number' id="street_number" disabled="true" >
+  <label>Postal code</label>
+  <input type="text" name="postal_code" id="postal_code" disabled="true" >
+  <label>City</label>
+  <input type="text" name="city" id="locality" disabled="true" >
+  <label>Country</label>
+  <input type="text" name='country' id='country' disabled="true" >
+  <input type="hidden" name="latitude" id="streetart-lat" >
+  <input type="hidden" name="longitude"  id="streetart-lng">
+
+
+  <label for="input-streetArt-picture">Upload picture street art </label>
+  <input type="file" name='streetArt-picture' id="input-streetArt-picture">
+ 
+  <input type="submit" name="" id="submit-streetart">
+</form>
+  `
+
+  document.getElementById('add-art').innerHTML += addFormHTML
+  initAutocomplete()
+})
+
+
+
+//////////////////////// AUTOCOMPLETE ADD FORM //////////////////////////
+
+let placeSearch;
+let autocomplete;
+const componentForm = {
+  street_number: "short_name",
+  route: "long_name",
+  locality: "long_name",
+  country: "long_name",
+  postal_code: "short_name",
+};
+
+function initAutocomplete() {
+  autocomplete = new google.maps.places.Autocomplete(
+    document.getElementById("streetart-address2"),
+    { types: ["geocode"] }
+  );
+  autocomplete.setFields(["address_component", "geometry"]);
+  autocomplete.addListener("place_changed", fillInAddress);
+}
+
+function fillInAddress() {
+  const place = autocomplete.getPlace();
+  console.log(place.geometry.location.lat())
+
+
+  for (const component in componentForm) {
+    document.getElementById(component).value = "";
+    document.getElementById(component).disabled = false;
+  }
+
+  for (const component of place.address_components) {
   
-    // asign hidden inputfields
-    document.getElementById('streetart-city').value = response.data.results[0].address_components[4].long_name
-    document.getElementById('streetart-lat').value = response.data.results[0].geometry.location.lat
-    document.getElementById('streetart-long').value = response.data.results[0].geometry.location.lng
+    const addressType = component.types[0];
+    if (componentForm[addressType]) {
+      const val = component[componentForm[addressType]];
+      document.getElementById(addressType).value = val;
+    }
+  }
+  document.getElementById('streetart-lat').value = place.geometry.location.lat()
+  document.getElementById('streetart-lng').value = place.geometry.location.lng()
 
-  })
-  .catch(err => console.log(err))
 }
 
 
 
 
-
-// // TODO: response.data.[restaurants], get('/streetart')??
-// function getStreetArt() {
-//   axios
-//     .get('/streetart')
-//     .then(response => {
-//       console.log(response)
-//       placeStreetArt(response.data.streetarts);
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     });
-// }
-
-// // TODO: placeRestaurants(....)
-// function placeStreetArt(streetarts) {
-//   console.log(streetarts)
-//   for (let streetart of streetarts) {
-//     const center = {
-//       lat: streetart.location.coordinates[1],
-//       lng: streetart.location.coordinates[0]
-//     };
-//     const pin = new google.maps.Marker({
-//       position: center,
-//       map: map,
-//       title: streetart.name
-//     });
-//     markers.push(pin);
-//   }
-// }
-
-// getStreetArt()
-
-// // Geocoder
-// const geocoder = new google.maps.Geocoder();
-
-
-// // TODO: check getElementById('submit)
-// document.getElementById('submit-streetart').addEventListener('click', () => {
-//   geocodeAddress(geocoder, map);
-// });
- 
-// function geocodeAddress(geocoder, resultsMap) {
-//   const address = document.getElementById('streetart-address').value;
- 
-//   geocoder.geocode({ address: address }, (results, status) => {
-//     if (status === 'OK') {
-//       resultsMap.setCenter(results[0].geometry.location);
-//       let marker = new google.maps.Marker({
-//         map: resultsMap,
-//         position: results[0].geometry.location
-//       });
-//       document.getElementById('streetart-latitude').value = results[0].geometry.location.lat();
-//       document.getElementById('streetart-longitude').value = results[0].geometry.location.lng();
-//     } else {
-//       console.log(`Geocode was not successful for the following reason: ${status}`);
-//     }
-//   });
-// }

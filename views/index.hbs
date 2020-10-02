@@ -3,11 +3,15 @@
       <div class="nav-background"></div>
       <nav>
         <div>
-          {{!-- <img src="../images/logo horizontaal.png" alt="Logo ST_ART horizontaal "> --}}
         </div>
         <div class="link-items">
+          {{#if userInSesion}}
+          <a href="/userProfile">My profile</a>
+          {{else}}
           <a href="/login" >Login</a>
           <a href="/signup">Signup</a>
+          {{/if}}
+
         </div>
       </nav>
     </div>

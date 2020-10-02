@@ -27,10 +27,6 @@ const streetartSchema = new Schema (
       type: String,
       required: [true, 'Address is required.']
     },
-    details: {
-      type: String, 
-      maxlength: 300
-    },
     user: { type: Schema.Types.ObjectId, 'ref':'User' }
   },
   {
