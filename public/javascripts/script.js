@@ -31,16 +31,13 @@ function initialize() {
   })
 }
 
-
-// google.maps.event.addDomListener(window, 'load', initialize);
 window.addEventListener('load', initialize)
 
 
 //////////////////////// GOOGLE MAPS STREET ART BY CITY PAGE  //////////////////////////
 
 function initMap(){
-
-
+  
   //Styling goolge maps
   var stylesArray =
   [
@@ -378,11 +375,13 @@ function initMap(){
     }
   ]
 
+  //Get latitude and longitude from url
   const url = window.location.search
   let params = new URLSearchParams(url)
   let lat = Number((params.get("latitude")))
   let lng = Number((params.get("longitude")))
 
+  // Set coordinates and map
   const coordinates = {
     lat: lat,
     lng: lng
@@ -394,9 +393,13 @@ function initMap(){
     styles: stylesArray
   });
 
+  let pin
+  let pins = []
+  let infowindow
+  
+  getStreetArt()
 
-getStreetArt()
-
+  // Fetch streetart from database
   function getStreetArt(){
       axios
         .get('/streetart/show/api')
@@ -407,21 +410,75 @@ getStreetArt()
           console.log(error)
         })
     }
-    
-    function placeStreetArt(streetarts){
-      streetarts.forEach(streetart => {
-        
-        const center = {
-          lat: streetart.location.coordinates[1],
-          lng: streetart.location.coordinates[0]
-        }
-    
-        let pin = new google.maps.Marker({
-          position: center,
-          map: map,
-        
-        });
-      })  
+  
+
+  // Place markers
+  function placeStreetArt(streetarts){
+    streetarts.forEach(streetart => {
+      console.log(streetart.streetArtImgUrl)
+      const center = {
+        lat: streetart.location.coordinates[1],
+        lng: streetart.location.coordinates[0]
+      }
+
+      const image = {
+        url: streetart.streetArtImgUrl,
+        // size: new google.maps.Size(80, 80),
+        scaledSize: new google.maps.Size(50, 50),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(0, 20)
+      }
+
+      const shape = {
+        coords: [1, 1, 1, 20, 18, 20, 18, 1],
+        type: "poly",
+      }
+
+      const contentString =
+        '<div id="content">' +
+        '<div id="siteNotice">' +
+        "</div>" +
+        '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
+        '<div id="bodyContent">' +
+        "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
+        "sandstone rock formation in the southern part of the " +
+        "Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
+        "south west of the nearest large town, Alice Springs; 450&#160;km " +
+        "(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
+        "features of the Uluru - Kata Tjuta National Park. Uluru is " +
+        "sacred to the Pitjantjatjara and Yankunytjatjara, the " +
+        "Aboriginal people of the area. It has many springs, waterholes, " +
+        "rock caves and ancient paintings. Uluru is listed as a World " +
+        "Heritage Site.</p>" +
+        '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
+        "https://en.wikipedia.org/w/index.php?title=Uluru</a> " +
+        "(last visited June 22, 2009).</p>" +
+        "</div>" +
+        "</div>";
+
+      infowindow = new google.maps.InfoWindow({
+        content: contentString,
+      });
+  
+      pin = new google.maps.Marker({
+        position: center,
+        map: map,
+        icon: image,
+        // shape: shape,
+      });
+
+      pins.push(pin)
+
+    })
+
+    pins.forEach(pin => {
+      pin.addListener("click", () => {
+        infowindow.open(map, pin);
+      });
+    })
+ 
+   
+  
   }
 }
 
