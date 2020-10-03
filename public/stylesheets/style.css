@@ -51,7 +51,7 @@ button:focus {
 }
 
 hr {
-  background-color: #ff00c8;
+  background-color: rgb(255, 0, 200);
   opacity: 0.5;
   height: 1px;
   border: none;

@@ -23,7 +23,7 @@ const userSchema = new Schema (
     },
     profileImgUrl: {
       type: String,
-      default: './images/default_avatar.jpg'
+      default: '/images/default_avatar.jpg'
     },
     posts: [ {type: Schema.Types.ObjectId, 'ref':'Streetart' }]
   },

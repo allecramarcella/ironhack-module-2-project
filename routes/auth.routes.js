@@ -66,11 +66,15 @@ router.post('/signup', fileUploader.single('profile-picture'), (req, res, next) 
 ///////////////////////////// LOGIN //////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 router.get('/login', (req, res)=> {
-  res.render('auth/login')
+  const { redirect } = req.query
+  console.log(redirect)
+  res.render('auth/login', {redirect})
 });
 
 router.post('/login', (req, res, next) => {
-  // console.log('SESSION =====> ', req.session)
+  const { redirect } = req.query
+  console.log(redirect)
+
   const { email, password } = req.body;
 
   if (email === '' || password === '') {
@@ -87,7 +91,12 @@ router.post('/login', (req, res, next) => {
         return;
       } else if (bcrypt.compareSync(password, user.passwordHash)) {
         req.session.currentUser = user;
-        res.redirect('/userProfile');
+        if(!redirect) {
+          res.redirect('/userProfile');
+        } else{
+          res.redirect(redirect);
+        }
+       
       } else {
         res.render('auth/login', { errorMessage: 'Incorrect password.' });
       }

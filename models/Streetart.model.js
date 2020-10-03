@@ -19,13 +19,28 @@ const streetartSchema = new Schema (
       type: {type: String},
       coordinates: [Number],
     },
+    fullAddress: {
+      type: Schema.Types.Mixed
+    },
+    street: {
+      type: String,
+      required: [true, 'The street is required.']
+    },
+    streetNumber: {
+      type: Number,
+      required: [true, 'The street number is required.']
+    },
+    postalCode: {
+      type: Schema.Types.Mixed,
+      required: [true, 'The postal code is required.']
+    },
     city: {
       type: String,
-      required: [true, 'The city is required.']
+      required: [true, 'City is required.']
     },
-    address: {
+    country: {
       type: String,
-      required: [true, 'Address is required.']
+      required: [true, 'The country is required.']
     },
     user: { type: Schema.Types.ObjectId, 'ref':'User' }
   },
