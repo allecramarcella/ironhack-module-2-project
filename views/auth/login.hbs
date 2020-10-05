@@ -1,7 +1,6 @@
 <header class="header-home">
   <div class="nav">
     <div id="overlay"></div>
-    <div class="nav-background"></div>
     <nav>
       <div>
          <a href="/"><img src="../images/logo_black_white_yellow.png" alt="Logo ST_ART"></a>      </div>
@@ -24,10 +23,12 @@
 
       <button type="submit">Login</button>
 
-      <p>No account yet? <a href="/signup">Signup</a> first.</p>
+   
 
       {{#if errorMessage}}
         <p class="error">{{errorMessage}}</p>
+      {{else}}
+         <p>No account yet? <a href="/signup">Signup</a> first.</p>
       {{/if}}
     </form>
   </div>

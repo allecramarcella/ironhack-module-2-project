@@ -70,7 +70,7 @@ function initMap(){
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#ff00c8"
+          "color": "#ffff00"
         }
       ]
     },
@@ -79,7 +79,7 @@ function initMap(){
       "elementType": "geometry.stroke",
       "stylers": [
         {
-          "color": "#4b6878"
+          "visibility": "off"
         }
       ]
     },
@@ -96,7 +96,7 @@ function initMap(){
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#64779e"
+          "visibility": "off"
         }
       ]
     },
@@ -113,7 +113,7 @@ function initMap(){
       "elementType": "geometry.stroke",
       "stylers": [
         {
-          "color": "#4b6878"
+          "visibility": "off"
         }
       ]
     },
@@ -166,7 +166,7 @@ function initMap(){
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#6f9ba5"
+          "visibility": "off"
         }
       ]
     },
@@ -229,10 +229,7 @@ function initMap(){
       "elementType": "labels.text",
       "stylers": [
         {
-          "color": "#ffff00"
-        },
-        {
-          "visibility": "off"
+          "color": "#ff00c8"
         }
       ]
     },
@@ -295,7 +292,7 @@ function initMap(){
       "elementType": "labels.text",
       "stylers": [
         {
-          "color": "#ffff00"
+          "color": "#ff00c8"
         },
         {
           "visibility": "simplified"
@@ -415,7 +412,6 @@ function initMap(){
   // Place markers
   function placeStreetArt(streetarts){
     streetarts.forEach(streetart => {
-      console.log(streetart.streetArtImgUrl)
       const center = {
         lat: streetart.location.coordinates[1],
         lng: streetart.location.coordinates[0]
@@ -491,40 +487,48 @@ function initMap(){
 //////////////////////// EVENT LISTNER ADD BTN //////////////////////////
 
 const addBtn = document.getElementById('add-btn-citymap')
+const spottedArt = document.getElementById('spotted-art')
 
 
 addBtn.addEventListener('click', event => {
   event.preventDefault()
 
   addBtn.remove()
+  spottedArt.remove()
 
   const addFormHTML = `
+  <p>* required fields</p>
   <form method="POST" action="/streetart/add" enctype="multipart/form-data" id="add-st-art-form">
-  <input type="text" name="name" placeholder="name artwork" >
-  <input type="text" name="artist" placeholder="name artist" >
+  <label>Name artwork</label>
+  <input type="text" name="name" placeholder="Enter name artwork" id='streetart-name'>
+  <label>Name artist</label>
+  <input type="text" name="artist" placeholder="Enter name artist" id='streetart-artist'>
  
-  <label>Address</label>
-  <input type="text" name='address' placeholder="Enter your address" id="streetart-address2">
+  <label>Address *</label>
+  <input type="text" name='address' placeholder="Type address..." id="streetart-address">
 
-  <label>Street</label>
-  <input type="text" name='street' id="route"  class="field" disabled="true" >
-  <label>Number</label>
-  <input  type="number" name='streetNumber' id="street_number" disabled="true" >
-  <label>Postal code</label>
-  <input type="text" name="postalCode" id="postal_code" disabled="true" >
-  <label>City</label>
-  <input type="text" name="city" id="locality" disabled="true" >
-  <label>Country</label>
-  <input type="text" name='country' id='country' disabled="true" >
+
+  <label>Street + nr. * </label>
+  <input type="text" name='street' id="route"  disabled="true" placeholder='street'>
+  <input  type="number" name='streetNumber' id="street_number" disabled="true" placeholder='nr.'>
+  <br>
+  <label>Postal code *</label>
+  <input type="text" name="postalCode" id="postal_code" disabled="true" placeholder='postal code'>
+  <br>
+  <label>City *</label>
+  <input type="text" name="city" id="locality" disabled="true" placeholder='city'>
   <input type="hidden" name="fullAddress" id='full-address'>
   <input type="hidden" name="latitude" id="streetart-lat" >
   <input type="hidden" name="longitude"  id="streetart-lng">
+  
 
 
-  <label for="input-streetArt-picture">Upload picture street art </label>
+  <div>
+  <label for="input-streetArt-picture">Upload picture street art *</label>
   <input type="file" name='streetArt-picture' id="input-streetArt-picture">
- 
-  <input type="submit" name="" id="submit-streetart">
+
+  <button id="submit-streetart">Submit</button>
+  </div>
 </form>
   `
 
@@ -542,13 +546,12 @@ const componentForm = {
   street_number: "short_name",
   route: "long_name",
   locality: "long_name",
-  country: "long_name",
   postal_code: "short_name",
 };
 
 function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete(
-    document.getElementById("streetart-address2"),
+    document.getElementById("streetart-address"),
     { types: ["geocode"] }
   );
   autocomplete.setFields(["address_component", "formatted_address", "geometry"]);
@@ -577,5 +580,28 @@ function fillInAddress() {
 };
 
 
+//////////////////////// SEARCH CITY NAV SMALL //////////////////////////
+
+const searchCityBtn = document.getElementById('search-city-nav')
+const addedForm = document.getElementById('search-field')
 
 
+searchCityBtn.addEventListener('click', e => {
+  console.log('test')
+  e.preventDefault( )
+  clickHandler()
+})
+
+let clickCount = 0
+function clickHandler(event){
+  console.log('test')
+  searchCityBtn.innerHTML = ''
+
+  clickCount++
+  if(clickCount === 1){
+    addedForm.style.display = 'initial'
+  } else {
+    addedForm.style.display = 'none'
+    clickCount = 0
+  }
+}

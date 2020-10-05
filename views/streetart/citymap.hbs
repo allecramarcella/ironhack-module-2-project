@@ -4,15 +4,23 @@
   <div class="right-side">   
       {{> navSmall}}
    
-    <div class="overview-info">
+    <div id="overview-info">
+      <div id="search-field">
+          <form method="POST" action="">
+            <input type="search" name='search' placeholder="Find a city......." id="search-city" aria-label="Search for city">
+            <input type="submit" name="Search" id="submit-search" value='Go'>
+          </form>
+          <a href="" id="hide-search">Hide search</a>
+          <hr>
 
+      </div>
   
       <h1>{{city}} Street Art</h1>
 
 
       <div class="add" id="add-art">
         <h2>Add new Street Art</h2>
-        <p>Spotted some new Street Art?</p>
+        <p id="spotted-art">Spotted some new Street Art?</p>
         {{#if user}}
           <button id="add-btn-citymap">Add</button>
         {{else}}
@@ -25,17 +33,24 @@
       <div class="uploads">
         {{#if user}}
           <h2>Your latest uploads</h2>
-          {{#each streetArtByUser}}
-            <div class="img-user-uploads">
-              <img src={{streetArtImgUrl}} alt="picture street art of" {{artist}} id="uploads-user">
-            </div>
-            <div class="info-uploads">
-              <p>{{fullAddress}}</p>
-              <p>{{createdAt}}</p>
-              <a href="/streetart/artwork/details-{{id}}">Details</a>
-            </div>
-          {{/each}}
-            <hr>
+          {{#if streetArtByUser}}
+            {{#each streetArtByUser}}
+              <div class="img-user-uploads">
+                <img src={{streetArtImgUrl}} alt="picture street art of" {{artist}} id="uploads-user">
+              </div>
+              <div class="info-uploads">
+                <div>
+                  <p>{{fullAddress}}</p>
+                  <p>{{createdAt}}</p>
+                </div>
+                <a href="/streetart/artwork/details-{{id}}">Details</a>
+              </div>
+            {{/each}}
+             
+          {{else}}
+          <p>You haven't uploaded any street art for {{city}}. Start spotting!</p>
+          {{/if}}
+           <hr>
         {{/if}}
            
       </div>
@@ -44,18 +59,26 @@
       
       <div class="uploads">
         <h2>Latest posts from the community</h2> 
+        
+        {{#if streetArtByUser}}
         <p>What is happening in the streets....</p>
-        {{#each posts}}
-        <div class="img-uploads">
-          <img src={{streetArtImgUrl}} alt="picture street art of" {{artist}}>
-        </div>
-        <div class="info-uploads">
-          <p>{{fullAddress}}</p>
-          <p>{{createdAt}}</p>
-          <a href="/streetart/artwork/details-{{id}}">Details</a>
-        </div>
-        {{/each}}
+          {{#each posts}}
+          <div class="img-uploads">
+            <img src={{streetArtImgUrl}} alt="picture street art of" {{artist}}>
+          </div>
+          <div class="info-uploads">
+            <div>
+              <p>{{fullAddress}}</p>
+              <p>{{createdAt}}</p>
+            </div>
+                <a href="/streetart/artwork/details-{{id}}">Details</a>
+          </div>
+          {{/each}}
+        {{else}}
+        <p>No street art is uploaded yet for {{city}}.</p>
+        {{/if}}
       </div>
+
     </div>
   </div>
 

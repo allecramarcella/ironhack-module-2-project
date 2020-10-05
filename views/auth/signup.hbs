@@ -1,7 +1,6 @@
 <header class="header-home">
  <div class="nav">
     <div id="overlay"></div>
-    <div class="nav-background"></div>
     <nav>
       <div>
          <a href="/"><img src="../images/logo_black_white_yellow.png" alt="Logo ST_ART"></a>      </div>
@@ -25,14 +24,13 @@
       <label for="input-password">Password</label>
       <input type="password" name="password" id="input-password" placeholder="********" />
 
-      {{!-- <label for="input-profile-picture">Upload profile picture</label>
-      <input type="file" name='profile-picture' id="input-profile-picture"> --}}
-
       <button type="submit">Create account</button>
-      <p>Already an account? Go to <a href="/login">login</a></p>
+
 
       {{#if errorMessage}}
         <p class="error">{{errorMessage}}</p>
+      {{else}}
+         <p>Already an account? Go to <a href="/signup">Login</a></p>
       {{/if}}
     </form>
   </div>

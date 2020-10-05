@@ -38,10 +38,6 @@ const streetartSchema = new Schema (
       type: String,
       required: [true, 'City is required.']
     },
-    country: {
-      type: String,
-      required: [true, 'The country is required.']
-    },
     user: { type: Schema.Types.ObjectId, 'ref':'User' }
   },
   {

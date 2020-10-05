@@ -33,7 +33,6 @@ router.get('/:cityName', (req, res, next) => {
     Streetart.find({city: cityName}).limit(5)
     .populate('user')
     .then(allStreetArt => {
-      console.log(allStreetArt)
       res.render('streetart/citymap', { posts: allStreetArt, city: cityName, loginRedirect: loginRedirect} )
     }
       )
@@ -44,7 +43,7 @@ router.get('/:cityName', (req, res, next) => {
 
 
 router.post('/add', fileUploader.single('streetArt-picture'), (req, res, next) => {
-  const { name, artist, fullAddress, street, streetNumber, postalCode, city, country, longitude, latitude} = req.body
+  const { name, artist, fullAddress, street, streetNumber, postalCode, city, longitude, latitude} = req.body
   const streetArtImgUrl = req.file.path
 
   const newStreetArt = new Streetart({
@@ -55,7 +54,6 @@ router.post('/add', fileUploader.single('streetArt-picture'), (req, res, next) =
     streetNumber,
     postalCode,
     city,
-    country,
     streetArtImgUrl,
     location: {
       type: 'Point',
@@ -67,7 +65,7 @@ router.post('/add', fileUploader.single('streetArt-picture'), (req, res, next) =
 
   newStreetArt.save()
     .then(streetart => {
-      console.log(streetart)
+
       return User.findByIdAndUpdate({ _id: req.session.currentUser._id }, {$push: { posts: streetart._id}})
     })
     .then(()=> res.redirect('back'))

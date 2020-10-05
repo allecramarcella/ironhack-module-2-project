@@ -4,23 +4,43 @@
   </div>
   
   <div class="right-side">   
-      {{> navSmall}}
-   
-    <div class="overview-info">
-    <a href="javascript:javascript:history.go(-1)"> < back</a>
-     <p>Created at: {{streetart.createdAt}}</p>
-     <p>Address: {{streetart.fullAddress}}</p>
-     <p>Created by {{streetart.artist}}</p>
-     <p>Name artwork {{streetart.name}}</p>
-     <p>Uploaded by: {{user.username}}</p>
-     <img src={{user.profileImgUrl}} alt="Profile picture of user {{user.username}}">   
+     <nav id="nav-small">
+      <a href="/"><img src="/images/logo_black_white_yellow.png" alt="Logo ST_ART"></a>
+      <div>
+        {{#if user}}
+        <a href="/userProfile">My profile</a>
+        {{else}}
+        <a href="/login">Login</a>
+        {{/if}}
+      </div>
+   </nav>
 
-     {{#if user}}
-      hello
-     {{/if}}
+  
 
-
+  <div id="overview-info" class="detail-page">
+    <a href="javascript:javascript:history.go(-1)"> < back</a> 
+    
+    <div id="art-details">
+      <h3>Created at: {{streetart.createdAt}}</h3>
+      <h3>Address: {{streetart.fullAddress}}</h3>
+      <h3>Created by {{streetart.artist}}</h3>
+      <h3>Name artwork {{streetart.name}}</h3>
+      <h3>Uploaded by:</h3>
+      <div> 
+        <img src={{user.profileImgUrl}} alt="Profile picture of user {{user.username}}">  
+        <p> {{user.username}}</p>
+      </div>
     </div>
+
+
+     
+
+    {{#if user}}
+    <button>Edit artwork</button>
+    {{/if}}
+
+
+  </div>
  </div>
 
 </main>
