@@ -640,6 +640,11 @@ h2 {
   float: left;
 }
 
+#art-details {
+  margin: 50px 0;
+}
+
+
 #art-details img {
   border-radius: 90px;
   width: 50px;
@@ -648,11 +653,35 @@ h2 {
 
 #art-details div {
   display: flex;
-  width: 150px;
+  width: 30vw;
   justify-content: flex-start;
   align-items: center;
 }
 
+#art-details a {
+  color: #10d4b7;
+  font-style: italic;
+}
+
+#art-details p {
+  color: black;
+}
+
+#art-details h2 {
+  color: #ff00c8;
+}
+
+#art-details p:first-of-type{
+  font-size: 1.2vmax;
+  color: black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+#arrow-back {
+  font-size: 1.2vmax;
+}
 
 
 

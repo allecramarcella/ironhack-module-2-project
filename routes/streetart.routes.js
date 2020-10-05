@@ -21,8 +21,8 @@ router.get('/:cityName', (req, res, next) => {
   const loginRedirect  = req.originalUrl
 
   if(req.session.currentUser){    
-    const streetArtByUser = Streetart.find( {user: req.session.currentUser._id, city: cityName}).limit(5).populate('user')
-    const posts = Streetart.find({ city: cityName, user: { $ne:req.session.currentUser._id }}).limit(5).populate('user')
+    const streetArtByUser = Streetart.find( {user: req.session.currentUser._id, city: cityName}).limit(3).populate('user').sort( { createdAt : -1} )
+    const posts = Streetart.find({ city: cityName, user: { $ne:req.session.currentUser._id }}).limit(3).populate('user').sort( { createdAt : -1} )
 
     Promise.all([streetArtByUser, posts])
     .then(result => {
@@ -30,7 +30,7 @@ router.get('/:cityName', (req, res, next) => {
     })
     .catch(err => console.log(err)) 
   } else {
-    Streetart.find({city: cityName}).limit(5)
+    Streetart.find({city: cityName}).limit(3).sort( { createdAt : -1} )
     .populate('user')
     .then(allStreetArt => {
       res.render('streetart/citymap', { posts: allStreetArt, city: cityName, loginRedirect: loginRedirect} )

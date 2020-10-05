@@ -17,28 +17,33 @@
 
   
 
-  <div id="overview-info" class="detail-page">
-    <a href="javascript:javascript:history.go(-1)"> < back</a> 
+  <div id="overview-info" >
+    <a id="arrow-back" href="javascript:javascript:history.go(-1)"> < back</a> 
+
     
     <div id="art-details">
-      <h3>Created at: {{streetart.createdAt}}</h3>
-      <h3>Address: {{streetart.fullAddress}}</h3>
-      <h3>Created by {{streetart.artist}}</h3>
-      <h3>Name artwork {{streetart.name}}</h3>
+      {{!-- <hr> --}}
+
+      <h2>{{streetart.fullAddress}}</h2>
+      <p>Uploaded: {{streetart.createdAt}}</p>
+     
+      <p><span>Artist:</span>{{streetart.artist}}</p>
+      <p> <span>Name artwork:</span> {{streetart.name}}</p>
+
+      <hr>
       <h3>Uploaded by:</h3>
       <div> 
-        <img src={{user.profileImgUrl}} alt="Profile picture of user {{user.username}}">  
-        <p> {{user.username}}</p>
+        <div>
+          <img src={{user.profileImgUrl}} alt="Profile picture of user {{user.username}}">  
+          <p> {{user.username}}</p>
+        </div>
+
+        {{#if user}}
+          <a>Edit artwork</a>
+        {{/if}}
+
       </div>
     </div>
-
-
-     
-
-    {{#if user}}
-    <button>Edit artwork</button>
-    {{/if}}
-
 
   </div>
  </div>
