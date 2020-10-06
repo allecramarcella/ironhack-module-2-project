@@ -314,24 +314,51 @@ h2 {
 /*//////////////////////////// USER PROFILE /////////////////////////////////*/
 .profile-page nav  {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  height: 120px;
+  justify-content: space-between;
+  align-items: center;
   width: 100vw;
-  background-image: url('../images/nav-profilepage.png');
-  background-size: contain;
-  background-repeat: no-repeat;
+  height: 70px;
+  padding: 0 20px;
+  position: fixed;
+  background-color: white;
+  box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+  z-index: 100;
+  box-sizing: border-box;
+  top:0;
 }
 
-.profile-page nav a {
+.profile-page{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.right-side{
+  width: 35vw;
+  overflow: scroll;
+  height: 100vh;
+}
+
+.main-profilepage{
+  height: 100vh;
+  width: 65vw;
+  float: left;
+}
+
+
+/* .profile-page nav a {
   padding-right: 30px;
+} */
+
+.profile-page div a{
+  font-size: 1vmax;
+  padding-left: 25px;
 }
 
 .first-part{
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  width: 100%;
   margin-top: 50px;
 }
 
@@ -386,7 +413,6 @@ h2 {
 }
 
 .my-uploads{
-  width: 80vw;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;

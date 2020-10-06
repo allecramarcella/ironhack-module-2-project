@@ -67,7 +67,9 @@ router.post('/signup', fileUploader.single('profile-picture'), (req, res, next) 
 ////////////////////////////////////////////////////////////////////////
 router.get('/login', (req, res)=> {
   const { redirect } = req.query
-  console.log(redirect)
+  // const { url } = req
+  // console.log(url)
+  // console.log(req.url)
   res.render('auth/login', {redirect})
 });
 
