@@ -123,12 +123,24 @@ router.get('/logout', (req, res) => {
 router.get('/userProfile', (req, res) => {
   Streetart.find( {user: req.session.currentUser._id}).populate('user')
     .then(streetarts => {
-      console.log(streetarts)
       res.render('users/user-profile',  { posts: streetarts, user: req.session.currentUser})
     })
     .catch(err=> console.log(err))
-
 });
+
+router.post('/userProfile/edit-:id', fileUploader.single('profile-picture'), (req, res) => {
+  const {id} = req.params
+  console.log(id)
+  const profileImgUrl = req.file.path
+  console.log(profileImgUrl)
+
+  User.findByIdAndUpdate(id, {$set: {profileImgUrl}}, {new: true})
+    .then(updatedUser => {
+      console.log(updatedUser)
+      res.render('users/user-profile',  { posts: updatedUser, user: req.session.currentUser})
+    })
+    .catch(err => console.log(err))
+})
 
 
 module.exports = router;

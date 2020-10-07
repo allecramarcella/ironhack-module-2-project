@@ -29,12 +29,9 @@ if(inputHome) {
       //   window.location.href = `/streetart/${cityName}`
       } 
     })
-  }
-  
+  }  
   window.addEventListener('load', initialize)
 }
-
-
 
 //////////////////////// GOOGLE MAPS STREET ART BY CITY PAGE  //////////////////////////
 

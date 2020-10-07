@@ -31,7 +31,8 @@
 
       <div class="upload-profile-picture">
           <img src="{{ user.profileImgUrl }}" alt="Profile picture: "{{ user.username }}>
-          <form action="/userProfile-{{user._id}}" method="POST" enctype="multipart/form-data">
+
+          <form action="/userProfile/edit-{{user._id}}" enctype="multipart/form-data" method="POST" >
             <label for="input-profile-picture">Change profile picture</label>
             <input type="file" name='profile-picture' id="input-profile-picture"> 
             <button id="button-no-style">Submit</button>
