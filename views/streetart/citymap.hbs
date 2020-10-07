@@ -42,7 +42,7 @@
               <div class="info-uploads">
                 <div>
                   <p>{{fullAddress}}</p>
-                  <p>{{createdAt}}</p>
+                  <p> {{dateFormat streetart.createdAt "dddd, MMMM Do YYYY"}}</p>
                 </div>
                 <a href="/streetart/artwork/details-{{id}}">Details</a>
               </div>
@@ -69,8 +69,9 @@
           </div>
           <div class="info-uploads">
             <div>
-              <p>{{fullAddress}}</p>
-              <p>{{createdAt}}</p>
+             
+              <p> {{dateFormat streetart.createdAt "dddd, MMMM Do YYYY"}}</p>
+               <p>{{fullAddress}}</p>
             </div>
                 <a href="/streetart/artwork/details-{{id}}">Details</a>
           </div>

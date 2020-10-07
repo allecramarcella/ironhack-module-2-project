@@ -397,6 +397,7 @@ if(map){
   
     let pin
     let pins = []
+    let infowindows = []
     let infowindow
     
     getStreetArt()
@@ -424,7 +425,6 @@ if(map){
   
         const image = {
           url: streetart.streetArtImgUrl,
-          // size: new google.maps.Size(80, 80),
           scaledSize: new google.maps.Size(50, 50),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(0, 20)
@@ -435,36 +435,25 @@ if(map){
           type: "poly",
         }
   
-        
-  
+    
         const contentString =
-          // '<div id="content">' +
-          // '<div id="siteNotice">' +
-          // "</div>" +
-          // '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
-          // '<div id="bodyContent">' +
-          // "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
-          // "sandstone rock formation in the southern part of the " +
-          // "Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
-          // "south west of the nearest large town, Alice Springs; 450&#160;km " +
-          // "(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
-          // "features of the Uluru - Kata Tjuta National Park. Uluru is " +
-          // "sacred to the Pitjantjatjara and Yankunytjatjara, the " +
-          // "Aboriginal people of the area. It has many springs, waterholes, " +
-          // "rock caves and ancient paintings. Uluru is listed as a World " +
-          // "Heritage Site.</p>" +
-          // '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
-          // "https://en.wikipedia.org/w/index.php?title=Uluru</a> " +
-          // "(last visited June 22, 2009).</p>" +
-          // "</div>" +
-          // "</div>";
-  
-          `<h1>hello </h2>
-          <img src=''></img>`
-  
+          `
+          <div id='info-window'>
+            <div>
+              <img src='${streetart.streetArtImgUrl}'></img>
+            </div>
+            <h2>${streetart.fullAddress} </h2>
+            <a href='http://localhost:3000/streetart/artwork/details-${streetart._id}'>Details</a>
+          </div>
+          `
+      
         infowindow = new google.maps.InfoWindow({
           content: contentString,
         });
+
+        infowindows.push(infowindow)
+
+        console.log(infowindow)
     
         pin = new google.maps.Marker({
           position: center,
@@ -477,14 +466,11 @@ if(map){
   
       })
   
-      pins.forEach(pin => {
+      pins.forEach(function (pin, index){
         pin.addListener("click", () => {
-          infowindow.open(map, pin);
+          infowindows[index].open(map, pin);
         });
-      })
-   
-     
-    
+      }) 
     }
   }
 
@@ -503,6 +489,7 @@ if(map){
 
 const addBtn = document.getElementById('add-btn-citymap')
 const spottedArt = document.getElementById('spotted-art')
+const addressField = document.getElementById('streetart-address')
 
 if(addBtn){
   addBtn.addEventListener('click', event => {
@@ -515,9 +502,9 @@ if(addBtn){
     <p>* required fields</p>
     <form method="POST" action="/streetart/add" enctype="multipart/form-data" id="add-st-art-form">
     <label>Name artwork</label>
-    <input type="text" name="name" placeholder="Enter name artwork" id='streetart-name'>
+    <input type="text" name="name" placeholder="Enter name artwork" id='streetart-name' value='Untitled - '>
     <label>Name artist</label>
-    <input type="text" name="artist" placeholder="Enter name artist" id='streetart-artist'>
+    <input type="text" name="artist" placeholder="Enter name artist" id='streetart-artist' value='Unknown - '>
    
     <label>Address *</label>
     <input type="text" name='address' placeholder="Type address..." id="streetart-address">
@@ -551,6 +538,8 @@ if(addBtn){
     initAutocomplete()
   })
   
+} else if (addressField){
+  initAutocomplete()
 }
 
 

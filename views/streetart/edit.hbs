@@ -1,0 +1,46 @@
+<main id="map-page">
+  <div id="street-art">
+    <img src={{streetArtImgUrl}} alt="picture street art of" {{artist}}>
+  </div>
+  
+  <div class="right-side">   
+     <nav id="nav-small">
+      <a href="/"><img src="/images/logo_black_white_yellow.png" alt="Logo ST_ART"></a>
+      <div>
+        {{#if user}}
+        <a href="/userProfile">My profile</a>
+        {{else}}
+        <a href="/login">Login</a>
+        {{/if}}
+      </div>
+   </nav>
+
+  
+
+  <div id="overview-info" >
+    <a id="arrow-back" href="javascript:javascript:history.go(-1)"> < back</a> 
+
+    
+    <div id="art-details">
+      {{!-- <hr> --}}
+
+        <h2>Edit artwork </h2>
+
+        <p>* required fields</p>
+        <form method="POST" action="/streetart/artwork/edit-{{_id}}" id="add-st-art-form" enctype="multipart/form-data">
+          <label>Name artwork</label>
+          <input type="text" name="name" placeholder="Enter name artwork" id='streetart-name' value={{name}}>
+          <label>Name artist</label>
+          <input type="text" name="artist" placeholder="Enter name artist" id='streetart-artist' value={{artist}}>
+        
+          {{!-- <label for="input-streetArt-picture">Change photo </label>
+          <input type="file" name='streetArt-picture' id="input-streetArt-picture">  --}}
+        
+          <button id="submit-streetart">Submit change</button>
+
+      </form>
+    </div>
+  </div>
+ </div>
+
+</main>

@@ -81,8 +81,54 @@ router.post('/add', fileUploader.single('streetArt-picture'), (req, res, next) =
      res.render('streetart/details', {streetart, user: req.session.currentUser})
    })
    .catch(err => console.log(err))
-
 })
+
+router.get('/artwork/edit-:id', (req, res) => {
+  const { id } = req.params
+
+  Streetart.findById(id)
+    .then(streetartEdit => {
+      res.render('streetart/edit', streetartEdit)
+    })
+    .catch(err => console.log(err))
+})
+
+router.post('/artwork/edit-:id', (req, res) => {
+  const { id } = req.params
+  const { name, artist } = req.body
+
+  Streetart.findByIdAndUpdate(id, {$set: {name, artist}}, {new: true})
+    .then(updatedStreetart => {
+      console.log(updatedStreetart)
+      res.redirect(`/streetart/artwork/details-${updatedStreetart._id}`)
+    })
+    .catch(err => console.log(err))
+})
+
+router.post('/userProfile-:id', fileUploader.single('streetArt-picture'), (req, res) => {
+  const {id} = req.params
+  const userNewProfilePicture = req.file.path
+
+  User.findByIdAndUpdate(id, {$set: {profileImgUrl: userNewProfilePicture}}, {new: true})
+    .then(updatedStreetart => {
+      console.log(updatedStreetart)
+      res.redirect(`/userProfile`)
+    })
+    .catch(err => console.log(err))
+})
+
+
+router.post('/artwork/details/delete-:id', (req, res) => {
+  const { id } = req.params
+
+  Streetart.findByIdAndDelete(id)
+    .then((check)=> {
+      console.log(check)
+      res.redirect('/userProfile')}
+      )
+    .catch(err => console.log(err))
+})
+
 
 // to see raw data in browser / postman
 router.get('/show/api', (req, res, next) => {
@@ -93,6 +139,8 @@ router.get('/show/api', (req, res, next) => {
     })
     .catch(err => console.log(err))
 });
+
+
 
 
 module.exports = router; 

@@ -106,7 +106,7 @@ h2 {
 
 .header-home nav a,
 .profile-page nav a {
-  font-size: 1.1rem;
+  font-size: 1.2vmax;
   padding-left: 30px;
 }
 
@@ -318,7 +318,7 @@ h2 {
   align-items: center;
   width: 100vw;
   height: 70px;
-  padding: 0 20px;
+  padding: 0 40px 0 20px;
   position: fixed;
   background-color: white;
   box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
@@ -333,25 +333,19 @@ h2 {
   align-items: flex-start;
 }
 
-.right-side{
-  width: 35vw;
-  overflow: scroll;
-  height: 100vh;
-}
-
 .main-profilepage{
-  height: 100vh;
-  width: 65vw;
+  width: 58vw;
   float: left;
+  margin: 100px 60px;
+  padding-right: 50px;
+  border-right: 1px solid #ff00c8;
 }
 
-
-/* .profile-page nav a {
-  padding-right: 30px;
-} */
+.right-side-user{
+  width: 35vw;
+}
 
 .profile-page div a{
-  font-size: 1vmax;
   padding-left: 25px;
 }
 
@@ -359,7 +353,6 @@ h2 {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin-top: 50px;
 }
 
 #box-big {
@@ -367,13 +360,9 @@ h2 {
   border-top-right-radius: 30px;
   width: 40vw;
   height: 33vh;
-  margin: 50px 0 0 100px;
+  margin: 50px 0 0 70px;
   position: relative;
   display: inline-block;
-}
-
-.main-profilepage hr {
-  margin: 80px 90px;
 }
 
 .main-profilepage h1 {
@@ -395,7 +384,8 @@ h2 {
 
 .first-part img {
   border-radius: 90px; 
-  max-width: 115px;
+  width: 100px;
+  margin-bottom: 20px;
 }
 
 .upload-profile-picture {
@@ -403,27 +393,63 @@ h2 {
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
-  height: 33vh;
-  width: 38vw;
   margin-top: 40px;
 }
 
 .first-part form {
   display: inline-block;
+  text-align: center;
 }
+
+.first-part label{
+ color: #ff00c8;
+ font-size: 1vmax;
+}
+
 
 .my-uploads{
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  margin: 0 auto;
 }
 
-.my-uploads img {
-  width: 100px;
-  
+.info-my-uploads {
+  padding: 10px 0 20px 0;
 }
+
+
+.my-uploads img {
+  object-fit: cover;
+  height: 140px;
+  border-bottom-left-radius: 15px;
+  width: 98.5%;
+}
+
+#overview-info-user {
+  margin: 110px 25px 0 0;
+}
+
+#overview-info-user a {
+  padding: 0;
+  display: block;
+  margin-bottom: 50px;
+}
+
+#add-art {
+  margin-top: 50px;
+}
+
+
+.img-userProfile-uploads {
+  background-color: black;
+  border-bottom-left-radius: 15px;
+  border-right: yellow solid 4px;
+  border-bottom: #ff00c8 solid 4px;
+  margin: 35px 0 10px 0;
+  max-width: 25vw;
+}
+
 
 /*//////////////////////////// STREET ART CITY PAGE /////////////////////////////////*/
 #map-page{
@@ -478,10 +504,6 @@ h2 {
   margin-bottom: 50px;
 }
 
-/* #overview-info a {
-  font-size: 1.3vmax;
-} */
-
 .add p{
   display: inline;
 }
@@ -498,7 +520,7 @@ h2 {
   font-size: 1.3vmax;
 }
 
-.uploads img{
+.uploads img {
   object-fit: cover;
   height: 140px;
   width: 98.5%;
@@ -515,31 +537,36 @@ h2 {
 }
 
 .info-uploads{
-  padding: 10px 0 30px 0;
+  padding: 10px 0 50px 0;
 }
 
 .info-uploads div{
   float: left
 }
 
-.info-uploads a {
+.info-uploads a,
+.info-my-uploads a {
   float: right; 
   color: #10d4b7;
   font-style: italic;
+  font-size: 0.8vmax;
 }
 
-.info-uploads p{
-  font-size: 1vmax;
-  color: black;
-  padding-bottom: 8px;
-  font-weight: 600;
-}
-
-.info-uploads p:last-child{
+.info-uploads p,
+.info-my-uploads p{
   color:  #ff00c8;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-style: italic;
-  font-weight: 400;
+  font-size: 1vmax;
+  padding-bottom: 8px;
+}
+
+.info-uploads p:last-child,
+.info-my-uploads p:last-child{
+  font-size: 1vmax;
+  color: black;
+  font-style: normal;
+  font-weight: 600;
 }
 
 .img-user-uploads {
@@ -598,7 +625,7 @@ h2 {
 }
 
 #route{
-  width: 15vw;
+  width: 10vw;
 }
 
 #street_number{
@@ -642,16 +669,20 @@ h2 {
   margin-top: 15px;
 }
 
-#input-streetArt-picture {
+#input-streetArt-picture,
+#input-profile-picture {
   margin-top: 15px;
+  margin-bottom: 15px;
 }
 
-#input-streetArt-picture::-webkit-file-upload-button {
+#input-streetArt-picture::-webkit-file-upload-button,
+#input-profile-picture::-webkit-file-upload-button{
  background-color: yellow;
  border-radius: 10px;
- padding: 10px 30px;
+ padding: 10px 15px;
  border: none;
  outline: none;
+ font-family: 'Poppins';
 }
 
 
@@ -667,7 +698,7 @@ h2 {
 }
 
 #art-details {
-  margin: 50px 0;
+  margin: 40px 0;
 }
 
 
@@ -677,38 +708,100 @@ h2 {
   margin-right: 15px;;
 }
 
-#art-details div {
+#uploader-stuff {
   display: flex;
-  width: 30vw;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#uploader-info {
+  display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
+#uploader-controls{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
 #art-details a {
   color: #10d4b7;
   font-style: italic;
+  padding: 0 10px 0 10px;
+  font-size: 1vmax;
 }
 
+
 #art-details p {
+  padding: 20px 0 0 0;
+}
+
+#art-details p span{
   color: black;
+  font-weight: 600;
 }
 
 #art-details h2 {
-  color: #ff00c8;
+  color: #ff00c8; 
+  margin: 0;
+  padding-bottom: 10px;
+  font-size: 1.8vmax;
 }
 
-#art-details p:first-of-type{
+#art-details h3{
   font-size: 1.2vmax;
   color: black;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-style: italic;
-  font-weight: 400;
+  padding: 0 0 10px 0;
+  margin: 0;
+  font-weight: 600;
+}
+#art-details h4{
+  font-size: 0.9vmax;
+}
+
+#art-details div div p{
+  font-size: 0.9vmax;
+  padding: 0;
+}
+
+#button-no-style{
+  font-style: italic;
+  background-color: transparent;
+  border: none;
+  font-size: 1vmax;
+  height: 0;
+  font-weight: 700;
 }
 
 #arrow-back {
-  font-size: 1.2vmax;
+  font-size: 1.1vmax;
 }
 
+#info-window img{
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+
+
+#info-window a{
+  color:  #10d4b7;
+  font-size: 1vmax;
+}
+
+
+
+/*//////////////////////////// STREETART EDIT /////////////////////////////////*/
+#submit-streetart {
+  margin-top: 20px;
+}
 
 
 /*//////////////////////////////////////////////////////////////////////////////////*/

@@ -19,6 +19,8 @@ mongoose
     console.error('Error connecting to mongo', err)
   });
 
+  mongoose.set('useFindAndModify', false);
+  
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
@@ -46,6 +48,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // Register the location for handlebars partials here:
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
+hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';

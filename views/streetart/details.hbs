@@ -25,22 +25,28 @@
       {{!-- <hr> --}}
 
       <h2>{{streetart.fullAddress}}</h2>
-      <p>Uploaded: {{streetart.createdAt}}</p>
-     
-      <p><span>Artist:</span>{{streetart.artist}}</p>
-      <p> <span>Name artwork:</span> {{streetart.name}}</p>
+      <h3>Uploaded: {{dateFormat streetart.createdAt "dddd, MMMM Do YYYY"}}</h3>
+  
+      <p><span>Artist: </span>{{streetart.artist}}</p>
+      <p> <span>Name artwork: </span> {{streetart.name}}</p>
 
       <hr>
-      <h3>Uploaded by:</h3>
-      <div> 
-        <div>
-          <img src={{user.profileImgUrl}} alt="Profile picture of user {{user.username}}">  
-          <p> {{user.username}}</p>
+      <h4>Uploaded by:</h4>
+      <div id="uploader-stuff"> 
+        <div id="uploader-info">
+          <img src={{streetart.user.profileImgUrl}} alt="Profile picture of user {{streetart.user.username}}">  
+          <p> {{streetart.user.username}}</p>
+        </div>
+        <div id="uploader-controls">
+          {{#if user}}
+            <a href="/streetart/artwork/edit-{{streetart._id}}">Edit</a>
+            <form action="/streetart/artwork/details/delete-{{streetart._id}}" method="POST">
+              <button id='button-no-style'>Delete</button>
+            </form>
+    
+          {{/if}}
         </div>
 
-        {{#if user}}
-          <a>Edit artwork</a>
-        {{/if}}
 
       </div>
     </div>

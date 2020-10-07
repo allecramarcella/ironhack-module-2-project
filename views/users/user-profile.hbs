@@ -4,9 +4,10 @@
     <a href="/"><img src="/images/logo_black_white_yellow.png" alt="Logo ST_ART"></a>
 
     <div>
+    
       <a href="" id="search-city-nav">Search City...</a>
       {{#if user}}
-      <a href="javascript:javascript:history.go(-1)" >< back</a>
+
       <a href="/logout">Logout</a>
       {{else}}
       <a href="/login">Login</a>
@@ -30,65 +31,68 @@
 
       <div class="upload-profile-picture">
           <img src="{{ user.profileImgUrl }}" alt="Profile picture: "{{ user.username }}>
-          <form action="/signup" method="POST" enctype="multipart/form-data">
-            <label for="input-profile-picture">Upload profile picture</label>
+          <form action="/userProfile-{{user._id}}" method="POST" enctype="multipart/form-data">
+            <label for="input-profile-picture">Change profile picture</label>
             <input type="file" name='profile-picture' id="input-profile-picture"> 
+            <button id="button-no-style">Submit</button>
           </form>
-        </div>
+      </div>
     </div>
-
-
     <hr>
-
-        <div class="my-uploads">
-          <h2>Your uploads</h2>
-          {{#each posts}}
-
-          <div class="img-user-uploads">
-            <img src={{streetArtImgUrl}} alt="picture street art of" {{artist}} >
-          </div>
-          <div class="info-uploads">
-            <p>{{fullAddress}}</p>
-            <p>{{createdAt}}</p>
-            <a href="/streetart/artwork/details-{{id}}">Details</a>
-          </div>
-          {{/each}}
+    <h2>Your uploads</h2>
+    <div class="my-uploads">
+      
+      {{#each posts}}
+      <div>
+        <div class="img-userProfile-uploads">
+          <img src={{streetArtImgUrl}} alt="picture street art of" {{artist}} >
         </div>
+        <div class="info-my-uploads">
+          <div>
+            <a href="/streetart/artwork/details-{{id}}">Details</a>
+            <p>{{dateFormat streetart.createdAt "dddd, MMMM Do YYYY"}}</p>
+            
+            <p>{{fullAddress}}</p>
+          </div>
+           
+        </div>
+      </div>
+      {{/each}}
+    </div>
     
 
-      <div class="right-side">
-        <div class="overview-info">
+    
+  </div>
 
-          <div id="search-field">
-            <form method="POST" action="">
-              <input type="search" name='search' placeholder="Find a city......." id="search-city" aria-label="Search for city">
-              <input type="submit" name="Search" id="submit-search" value='Go'>
-            </form>
-            <a href="" id="hide-search">Hide search</a>
-            <hr>
-          </div>
+  <div class="right-side-user">
+      <div id="overview-info-user">
+          <a href="javascript:javascript:history.go(-1)" >< back</a>
 
-
-              
-          <h1>{{city}} Street Art</h1>
-
-
-          <div class="add" id="add-art">
-            <h2>Add new Street Art</h2>
-            <p id="spotted-art">Spotted some new Street Art?</p>
-            {{#if user}}
-              <button id="add-btn-citymap">Add</button>
-            {{else}}
-              <p> <a href="/login?redirect={{loginRedirect}}"> Login</a> to upload</p>
-            {{/if}}
-          </div> 
-
-
+        <div id="search-field">
+          <form method="POST" action="">
+            <input type="search" name='search' placeholder="Find a city......." id="search-city" aria-label="Search for city">
+            <input type="submit" name="Search" id="submit-search" value='Go'>
+          </form>
+          <a href="" id="hide-search">Hide search</a>
+          <hr>
         </div>
 
 
+        <div class="add" id="add-art">
+          <h2>Add new Street Art</h2>
+          <p id="spotted-art">Spotted some new Street Art?</p>
+          {{#if user}}
+            <button id="add-btn-citymap">Add</button>
+          {{else}}
+            <p> <a href="/login?redirect={{loginRedirect}}"> Login</a> to upload</p>
+          {{/if}}
+        </div> 
+
+
+      </div>
+
+
     </div>
-  </div>
   
 
 </div>
