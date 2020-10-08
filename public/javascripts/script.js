@@ -449,8 +449,6 @@ if(map){
         });
 
         infowindows.push(infowindow)
-
-        console.log(infowindow)
     
         pin = new google.maps.Marker({
           position: center,
@@ -473,13 +471,6 @@ if(map){
 
 
 }
-
-
-
-  
-
-
-
 
 
 //////////////////////// EVENT LISTNER ADD BTN //////////////////////////
@@ -536,9 +527,6 @@ if(addBtn){
 } else if (addressField){
   initAutocomplete()
 }
-
-
-
 
 
 //////////////////////// AUTOCOMPLETE ADD FORM //////////////////////////

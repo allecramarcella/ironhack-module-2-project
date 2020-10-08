@@ -9,16 +9,13 @@ const app = require('../app');
 const { urlencoded } = require('body-parser');
 
 
-
-
-// router.get('/add', (req, res) => {
-//   res.render('streetart/add')
-// })
-
-
+///////////MAP CITY///////////
 router.get('/:cityName', (req, res, next) => {
   const { cityName } = req.params
   const loginRedirect  = req.originalUrl
+  const loginRedirectEncoded = encodeURI(loginRedirect)
+  // console.log(loginRedirect)
+  // console.log(loginRedirectEncoded)
 
   if(req.session.currentUser){    
     const streetArtByUser = Streetart.find( {user: req.session.currentUser._id, city: cityName}).limit(3).populate('user').sort( { createdAt : -1} )
@@ -33,13 +30,14 @@ router.get('/:cityName', (req, res, next) => {
     Streetart.find({city: cityName}).limit(3).sort( { createdAt : -1} )
     .populate('user')
     .then(allStreetArt => {
-      res.render('streetart/citymap', { posts: allStreetArt, city: cityName, loginRedirect: loginRedirect} )
+      res.render('streetart/citymap', { posts: allStreetArt, city: cityName, loginRedirect: loginRedirectEncoded} )
     }
       )
     .catch(err => console.log(err))
   }
 });
 
+///////////ADD///////////
 router.post('/add', fileUploader.single('streetArt-picture'), (req, res, next) => {
   const { name, artist, fullAddress, street, streetNumber, postalCode, city, longitude, latitude} = req.body
   const streetArtImgUrl = req.file.path
@@ -60,16 +58,15 @@ router.post('/add', fileUploader.single('streetArt-picture'), (req, res, next) =
     user: req.session.currentUser._id
   })
 
-
   newStreetArt.save()
     .then(streetart => {
-
       return User.findByIdAndUpdate({ _id: req.session.currentUser._id }, {$push: { posts: streetart._id}})
     })
     .then(()=> res.redirect('back'))
     .catch(err => console.log(err))
  })
 
+ ///////////DETAILS///////////
  router.get('/artwork/details-:id', (req, res) => {
   const urlId = req.params.id
   const streetArtId = Streetart.findById(urlId).populate('user')
@@ -81,6 +78,7 @@ router.post('/add', fileUploader.single('streetArt-picture'), (req, res, next) =
    .catch(err => console.log(err))
 })
 
+///////////EDIT///////////
 router.get('/artwork/edit-:id', (req, res) => {
   const { id } = req.params
 
@@ -102,7 +100,7 @@ router.post('/artwork/edit-:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
-
+///////////DELETE///////////
 router.post('/artwork/details/delete-:id', (req, res) => {
   const { id } = req.params
 

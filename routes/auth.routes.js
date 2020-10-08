@@ -17,8 +17,6 @@ router.get('/signup', (req, res) => {
 
 router.post('/signup', fileUploader.single('profile-picture'), (req, res, next) => {
   const { username, email, password , currentUser} = req.body;
-  // const profileImgUrl = req.file.path;
-  // console.log(req.file.path)
 
   if (!username || !email || !password) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
@@ -67,15 +65,16 @@ router.post('/signup', fileUploader.single('profile-picture'), (req, res, next) 
 ////////////////////////////////////////////////////////////////////////
 router.get('/login', (req, res)=> {
   const { redirect } = req.query
-  // const { url } = req
-  // console.log(url)
-  // console.log(req.url)
-  res.render('auth/login', {redirect})
+  const { latitude } = req.query
+  const url = redirect + '&latitude=' + latitude
+
+  res.render('auth/login', {loginRedirect: url})
 });
 
 router.post('/login', (req, res, next) => {
   const { redirect } = req.query
-  console.log(redirect)
+  const { latitude } = req.query
+  const url = redirect + '&latitude=' + latitude
 
   const { email, password } = req.body;
 
@@ -96,7 +95,7 @@ router.post('/login', (req, res, next) => {
         if(!redirect) {
           res.redirect('/userProfile');
         } else{
-          res.redirect(redirect);
+          res.redirect(url);
         }
        
       } else {
