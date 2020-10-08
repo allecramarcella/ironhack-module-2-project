@@ -440,7 +440,7 @@ if(map){
               <img src='${streetart.streetArtImgUrl}'></img>
             </div>
             <h2>${streetart.fullAddress} </h2>
-            <a href='http://localhost:3000/streetart/artwork/details-${streetart._id}'>Details</a>
+            <a href='/streetart/artwork/details-${streetart._id}'>Details</a>
           </div>
           `
       
@@ -520,8 +520,6 @@ if(addBtn){
     <input type="hidden" name="latitude" id="streetart-lat" >
     <input type="hidden" name="longitude"  id="streetart-lng">
     
-  
-  
     <div>
     <label for="input-streetArt-picture">Upload picture street art *</label>
     <input type="file" name='streetArt-picture' id="input-streetArt-picture">
