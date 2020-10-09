@@ -349,12 +349,6 @@ h2 {
   padding-left: 25px;
 }
 
-.first-part{
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
 #box-big {
   background-color: yellow;
   border-top-right-radius: 30px;
@@ -382,30 +376,25 @@ h2 {
   font-size: 1.5rem;
 }
 
-.first-part img {
+.upload-profile-picture img {
   border-radius: 90px; 
-  width: 100px;
   margin-bottom: 20px;
+  object-fit: cover;
+  width: 70px;
+  height: 70px;
 }
+
 
 .upload-profile-picture {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
-  flex-direction: column;
-  margin-top: 40px;
+  margin: 40px 0 0 20px;
 }
 
-.first-part form {
-  display: inline-block;
-  text-align: center;
+.upload-profile-picture form {
+  margin-left: 20px;
 }
-
-.first-part label{
- color: #ff00c8;
- font-size: 1vmax;
-}
-
 
 .my-uploads{
   display: flex;
@@ -449,6 +438,22 @@ h2 {
   margin: 35px 0 10px 0;
   max-width: 25vw;
 }
+
+.profile-page nav div img{
+  border-radius: 90px;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  margin-left: 30px;
+}
+
+
+.profile-page nav div{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 
 
 /*//////////////////////////// STREET ART CITY PAGE /////////////////////////////////*/
@@ -709,6 +714,8 @@ h2 {
 #art-details img {
   border-radius: 90px;
   width: 50px;
+  height: 50px;
+  object-fit: cover;
   margin-right: 15px;;
 }
 
@@ -781,6 +788,9 @@ h2 {
   font-size: 1vmax;
   height: 0;
   font-weight: 700;
+  margin-left: 15px;
+  width: auto;
+  color: #10d4b7;
 }
 
 #arrow-back {
@@ -792,6 +802,7 @@ h2 {
   height: 300px;
   object-fit: cover;
 }
+
 
 
 

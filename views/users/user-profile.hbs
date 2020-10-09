@@ -7,8 +7,9 @@
     
       <a href="" id="search-city-nav">Search City...</a>
       {{#if user}}
-
+    
       <a href="/logout">Logout</a>
+       <img src={{user.profileImgUrl}} alt="Profile picture of user {{streetart.user.username}}" id="user-profile-picture-nav">  
       {{else}}
       <a href="/login">Login</a>
       {{/if}}
@@ -29,17 +30,27 @@
             {{/if}}
       </div>
 
-      <div class="upload-profile-picture">
-          <img src="{{ user.profileImgUrl }}" alt="Profile picture: "{{ user.username }}>
+    
+        <div class="upload-profile-picture">
+                
+                <div>
+                  <img src={{user.profileImgUrl }} alt="Profile picture: "{{ user.username }}>
+                </div>
+                
 
-          <form action="/userProfile/edit-{{user._id}}" enctype="multipart/form-data" method="POST" >
-            <label for="input-profile-picture">Change profile picture</label>
-            <input type="file" name='profile-picture' id="input-profile-picture"> 
-            <button id="button-no-style">Submit</button>
-          </form>
-      </div>
+                <form action="/userProfile/edit-{{user._id}}" enctype="multipart/form-data" method="POST" >
+                  <input type="file" name='profile-picture' id="input-profile-picture" required> 
+                  <button id="button-no-style">Change profile picture</button>
+                </form>
+                {{#if errorMessage}}
+                  <p class="error">{{errorMessage}}</p>
+                {{/if}}
+            </div>
+  
     </div>
+
     <hr>
+
     <h2>Your uploads</h2>
     <div class="my-uploads">
       
@@ -67,8 +78,9 @@
 
   <div class="right-side-user">
       <div id="overview-info-user">
+       
           <a href="javascript:javascript:history.go(-1)" >< back</a>
-
+           
         <div id="search-field">
           <form method="POST" action="">
             <input type="search" name='search' placeholder="Find a city......." id="search-city" aria-label="Search for city">
@@ -88,6 +100,8 @@
             <p> <a href="/login?redirect={{loginRedirect}}"> Login</a> to upload</p>
           {{/if}}
         </div> 
+
+
 
 
       </div>
