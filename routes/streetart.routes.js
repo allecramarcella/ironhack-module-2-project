@@ -71,11 +71,20 @@ router.post('/add', fileUploader.single('streetArt-picture'), (req, res, next) =
   const urlId = req.params.id
   const streetArtId = Streetart.findById(urlId).populate('user')
 
- streetArtId 
-   .then(streetart => {
-     res.render('streetart/details', {streetart, user: req.session.currentUser})
-   })
-   .catch(err => console.log(err))
+
+
+  streetArtId 
+    .then(streetart => {
+      // console.log(streetart.user._id)
+      // console.log(req.session.currentUser._id)
+      if(streetart.user._id === req.session.currentUser._id){
+        res.render('streetart/details', {streetart, sameUser: req.session.currentUser})
+      } else{
+        res.render('streetart/details', {streetart, user: req.session.currentUser})
+      }
+     
+    })
+    .catch(err => console.log(err))
 })
 
 ///////////EDIT///////////
@@ -89,15 +98,25 @@ router.get('/artwork/edit-:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.post('/artwork/edit-:id', (req, res) => {
+router.post('/artwork/edit-:id', fileUploader.single('streetArt-picture'), (req, res) => {
   const { id } = req.params
   const { name, artist } = req.body
 
-  Streetart.findByIdAndUpdate(id, {$set: {name, artist}}, {new: true})
+  if(req.file){
+    const streetArtImgUrl = req.file.path
+
+    Streetart.findByIdAndUpdate(id, {$set: {name, artist, streetArtImgUrl}}, {new: true})
     .then(updatedStreetart => {
       res.redirect(`/streetart/artwork/details-${updatedStreetart._id}`)
     })
     .catch(err => console.log(err))
+  } else{
+    Streetart.findByIdAndUpdate(id, {$set: {name, artist}}, {new: true})
+    .then(updatedStreetart => {
+      res.redirect(`/streetart/artwork/details-${updatedStreetart._id}`)
+    })
+    .catch(err => console.log(err))
+  }
 })
 
 ///////////DELETE///////////

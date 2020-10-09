@@ -640,6 +640,10 @@ h2 {
   width: 15vw;
 }
 
+#hide-add{
+  color: black;
+  font-size: 0.8vmax;
+}
 
 #add-st-art-form label {
   font-size: 1.2vmax;
@@ -800,7 +804,7 @@ h2 {
 
 /*//////////////////////////// STREETART EDIT /////////////////////////////////*/
 #submit-streetart {
-  margin-top: 20px;
+  margin: 20px 0 50px 0;
 }
 
 

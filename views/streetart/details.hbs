@@ -38,7 +38,7 @@
           <p> {{streetart.user.username}}</p>
         </div>
         <div id="uploader-controls">
-          {{#if user}}
+          {{#if sameUser}}
             <a href="/streetart/artwork/edit-{{streetart._id}}">Edit</a>
             <form action="/streetart/artwork/details/delete-{{streetart._id}}" method="POST">
               <button id='button-no-style'>Delete</button>

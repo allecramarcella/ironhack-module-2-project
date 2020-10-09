@@ -478,6 +478,42 @@ if(map){
 const addBtn = document.getElementById('add-btn-citymap')
 const spottedArt = document.getElementById('spotted-art')
 const addressField = document.getElementById('streetart-address')
+const hideAdd = document.getElementById('hide-add')
+
+const addFormHTML = `
+<p>* required fields</p>
+<form method="POST" action="/streetart/add" enctype="multipart/form-data" id="add-st-art-form">
+<label>Name artwork</label>
+<input type="text" name="name" placeholder="Enter name artwork" id='streetart-name' value='Untitled - '>
+<label>Name artist</label>
+<input type="text" name="artist" placeholder="Enter name artist" id='streetart-artist' value='Unknown - '>
+
+<label>Address *</label>
+<input type="text" name='address' placeholder="Type address..." id="streetart-address" required>
+
+
+<label>Street + nr. * </label>
+<input type="text" name='street' id="route"  disabled="true" placeholder='street' required>
+<input  type="number" name='streetNumber' id="street_number" disabled="true" placeholder='nr.' required>
+<br>
+<label>Postal code *</label>
+<input type="text" name="postalCode" id="postal_code" disabled="true" placeholder='postal code' required>
+<br>
+<label>City *</label>
+<input type="text" name="city" id="locality" disabled="true" placeholder='city' required>
+<input type="hidden" name="fullAddress" id='full-address'>
+<input type="hidden" name="latitude" id="streetart-lat" >
+<input type="hidden" name="longitude"  id="streetart-lng">
+
+<div>
+<label for="input-streetArt-picture">Upload picture street art *</label>
+<input type="file" name='streetArt-picture' id="input-streetArt-picture" required>
+
+<button id="submit-streetart">Submit</button>
+</div>
+</form>
+<a href="" id="hide-add">Hide add new street art</a>
+`
 
 if(addBtn){
   addBtn.addEventListener('click', event => {
@@ -485,47 +521,21 @@ if(addBtn){
   
     addBtn.remove()
     spottedArt.remove()
-  
-    const addFormHTML = `
-    <p>* required fields</p>
-    <form method="POST" action="/streetart/add" enctype="multipart/form-data" id="add-st-art-form">
-    <label>Name artwork</label>
-    <input type="text" name="name" placeholder="Enter name artwork" id='streetart-name' value='Untitled - '>
-    <label>Name artist</label>
-    <input type="text" name="artist" placeholder="Enter name artist" id='streetart-artist' value='Unknown - '>
-   
-    <label>Address *</label>
-    <input type="text" name='address' placeholder="Type address..." id="streetart-address">
-  
-  
-    <label>Street + nr. * </label>
-    <input type="text" name='street' id="route"  disabled="true" placeholder='street'>
-    <input  type="number" name='streetNumber' id="street_number" disabled="true" placeholder='nr.'>
-    <br>
-    <label>Postal code *</label>
-    <input type="text" name="postalCode" id="postal_code" disabled="true" placeholder='postal code'>
-    <br>
-    <label>City *</label>
-    <input type="text" name="city" id="locality" disabled="true" placeholder='city'>
-    <input type="hidden" name="fullAddress" id='full-address'>
-    <input type="hidden" name="latitude" id="streetart-lat" >
-    <input type="hidden" name="longitude"  id="streetart-lng">
-    
-    <div>
-    <label for="input-streetArt-picture">Upload picture street art *</label>
-    <input type="file" name='streetArt-picture' id="input-streetArt-picture">
-  
-    <button id="submit-streetart">Submit</button>
-    </div>
-  </form>
-    `
-  
     document.getElementById('add-art').innerHTML += addFormHTML
     initAutocomplete()
   })
   
 } else if (addressField){
   initAutocomplete()
+}
+
+if(hideAdd){
+  hideAdd.addEventListener('click', e => {
+    e.preventDefault()
+
+    document.getElementById('add-art').innerHTML -= addFormHTML
+  })
+
 }
 
 
