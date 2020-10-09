@@ -121,9 +121,12 @@ h2 {
 #color-box-big {
   background-color: #ff00c8;
   border-top-right-radius: 30px;
-  width: 50vw;
+  width: 43vw;
   height: 46vh;
-  margin: 3% auto;
+  position: absolute;
+  top: 54%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #color-box-small {
@@ -570,6 +573,7 @@ h2 {
 .info-my-uploads p:last-child{
   font-size: 1vmax;
   color: black;
+  font-family: 'Poppins', sans-serif;
   font-style: normal;
   font-weight: 600;
 }
@@ -737,6 +741,9 @@ h2 {
   align-items: center;
 }
 
+#uploader-controls button{
+  color: black;
+}
 
 
 #art-details a {
@@ -822,4 +829,36 @@ h2 {
 /*//////////////////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////// media queries /////////////////////////////////*/
 
-@media screen and (max-width: 600px )
+@media screen and (min-width: 1400px ) {
+  .main img {
+    height: 25vw;
+  }
+
+  #color-box-big {
+    width: 41.5vw;
+  }
+
+  #color-box-small p:nth-child(2) {
+    margin-bottom: 10%;
+  }
+}
+
+
+@media screen and (max-width: 900px ) {
+  .main img {
+    height: 35vw;
+  }
+
+  #color-box-big {
+    height: 30vh; 
+  }
+
+  #color-box-small{
+    height: 25vh;
+  }
+
+  #color-box-small p:nth-child(2) {
+    font-size: 1.2vmax;
+  }
+
+}
