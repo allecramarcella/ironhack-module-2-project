@@ -75,12 +75,14 @@ router.post('/add', fileUploader.single('streetArt-picture'), (req, res, next) =
 
   streetArtId 
     .then(streetart => {
-      // console.log(streetart.user._id)
-      // console.log(req.session.currentUser._id)
-      if(streetart.user._id === req.session.currentUser._id){
-        res.render('streetart/details', {streetart, sameUser: req.session.currentUser})
+
+      const streetartUploader = String(streetart.user._id)
+      const currentUser = String(req.session.currentUser._id)
+
+      if(streetartUploader === currentUser){
+        res.render('streetart/details', {streetart, user: req.session.currentUser, sameUser: req.session.currentUser})
       } else{
-        res.render('streetart/details', {streetart, user: req.session.currentUser})
+         res.render('streetart/details', {streetart, user: req.session.currentUser})
       }
      
     })
