@@ -41,10 +41,11 @@
               </div>
               <div class="info-uploads">
                 <div>
+                  <a href="/streetart/artwork/details-{{id}}">Details</a>
                   <p>{{fullAddress}}</p>
                   <p> {{dateFormat streetart.createdAt "dddd, MMMM Do YYYY"}}</p>
                 </div>
-                <a href="/streetart/artwork/details-{{id}}">Details</a>
+              
               </div>
             {{/each}}
              
@@ -69,10 +70,11 @@
           </div>
           <div class="info-uploads">
             <div>
+              <a href="/streetart/artwork/details-{{id}}">Details</a>
               <p> {{dateFormat streetart.createdAt "dddd, MMMM Do YYYY"}}</p>
                <p>{{fullAddress}}</p>
             </div>
-                <a href="/streetart/artwork/details-{{id}}">Details</a>
+            
           </div>
           {{/each}}
         {{else}}

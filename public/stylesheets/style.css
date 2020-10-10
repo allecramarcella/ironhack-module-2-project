@@ -409,15 +409,9 @@ h2 {
 
 .info-my-uploads {
   padding: 10px 0 20px 0;
+  width: 25vw;
 }
 
-
-.my-uploads img {
-  object-fit: cover;
-  height: 140px;
-  border-bottom-left-radius: 15px;
-  width: 98.5%;
-}
 
 #overview-info-user {
   margin: 110px 25px 0 0;
@@ -440,7 +434,18 @@ h2 {
   border-right: yellow solid 4px;
   border-bottom: #ff00c8 solid 4px;
   margin: 35px 0 10px 0;
-  max-width: 25vw;
+  height: 140px;
+  width: 25vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-uploads img {
+  object-fit: cover;
+  border-bottom-left-radius: 15px;
+  width: 98.5%;
 }
 
 .profile-page nav div img{
@@ -531,7 +536,6 @@ h2 {
 
 .uploads img {
   object-fit: cover;
-  height: 140px;
   width: 98.5%;
   border-bottom-left-radius: 15px;
   opacity: 0.8;
@@ -543,14 +547,28 @@ h2 {
   border-right: yellow solid 4px;
   border-bottom: #ff00c8 solid 4px;
   margin: 35px 0 10px 0;
+  height: 140px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+}
+
+.img-user-uploads {
+  background-color: black;
+  border-bottom-left-radius: 15px;
+  border-bottom: yellow solid 4px;
+  border-right: #ff00c8 solid 4px;
+  margin: 35px 0 10px 0;
+  height: 140px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .info-uploads{
   padding: 10px 0 50px 0;
-}
-
-.info-uploads div{
-  float: left
 }
 
 .info-uploads a,
@@ -559,6 +577,8 @@ h2 {
   color: #10d4b7;
   font-style: italic;
   font-size: 0.8vmax;
+  margin-left: 50px;
+  margin-bottom: 10px;
 }
 
 .info-uploads p,
@@ -568,6 +588,7 @@ h2 {
   font-style: italic;
   font-size: 1vmax;
   padding-bottom: 8px;
+  word-break: break-all;
 }
 
 .info-uploads p:last-child,
@@ -578,15 +599,6 @@ h2 {
   font-style: normal;
   font-weight: 600;
 }
-
-.img-user-uploads {
-  background-color: black;
-  border-bottom-left-radius: 15px;
-  border-bottom: yellow solid 4px;
-  border-right: #ff00c8 solid 4px;
-  margin: 35px 0 10px 0;
-}
-
 
 #search-field {
   display: none;
