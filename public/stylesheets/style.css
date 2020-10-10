@@ -721,11 +721,19 @@ h2 {
 
 /*//////////////////////////// STREET ART DETAILS /////////////////////////////////*/
 
-#street-art img {
-  object-fit: cover;
+#street-art {
   height: 100vh;
   width: 65vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;  
+  align-items: center;
   float: left;
+}
+
+#street-art img {
+  object-fit: cover;
+  width: 100%;
 }
 
 #art-details {
@@ -822,13 +830,19 @@ h2 {
   font-size: 1.1vmax;
 }
 
-#info-window img{
-  width: 100%;
+#info-window div{
   height: 300px;
-  object-fit: cover;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;  
+  align-items: center;
 }
 
-
+#info-window img{
+  width: 100%;
+  object-fit: cover;
+}
 
 
 #info-window a{
