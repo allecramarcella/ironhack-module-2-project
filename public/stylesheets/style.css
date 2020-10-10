@@ -568,7 +568,7 @@ h2 {
 }
 
 .info-uploads{
-  padding: 10px 0 50px 0;
+  padding: 10px 0 10px 0;
 }
 
 .info-uploads a,
@@ -588,7 +588,7 @@ h2 {
   font-style: italic;
   font-size: 1vmax;
   padding-bottom: 8px;
-  word-break: break-all;
+  word-wrap: normal;
 }
 
 .info-uploads p:last-child,
@@ -598,6 +598,7 @@ h2 {
   font-family: 'Poppins', sans-serif;
   font-style: normal;
   font-weight: 600;
+  word-wrap: normal;
 }
 
 #search-field {

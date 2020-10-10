@@ -121,7 +121,7 @@ router.get('/logout', (req, res) => {
 ////////////////////////////////////////////////////////////////////////
 
 router.get('/userProfile', (req, res) => {
-  Streetart.find( {user: req.session.currentUser._id}).populate('user')
+  Streetart.find( {user: req.session.currentUser._id}).sort( { city : 1, createdAt: -1} ).populate('user')
     .then(streetarts => {
       console.log(req.session)
       res.render('users/user-profile',  { posts: streetarts, user: req.session.currentUser})
