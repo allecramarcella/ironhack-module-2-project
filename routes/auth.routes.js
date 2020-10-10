@@ -137,15 +137,16 @@ router.post('/userProfile/edit-:id', fileUploader.single('profile-picture'), (re
 
     User.findByIdAndUpdate(id, {$set: {profileImgUrl} }, {new: true})
       .then(updatedUser => {
-        console.log('test')
-        console.log(updatedUser)
+        console.log('before', req.session.currentUser)
+        req.session.currentUser.profileImgUrl = profileImgUrl
+        console.log('after', req.session.currentUser)
         res.redirect('/userProfile')
       })
         .catch(err => console.log(err))
     } else {
         Streetart.find( {user: req.session.currentUser._id}).populate('user')
         .then(streetarts => {
-          console.log(req.session)
+          // console.log(req.session)
           res.render('users/user-profile',  { posts: streetarts, user: req.session.currentUser, errorMessage: 'Select an image to upload your profile picture'})
         })
         .catch(err=> console.log(err))
