@@ -34,7 +34,7 @@
           <h2>Your latest uploads</h2>
 
           {{#if streetArtByUser}}
-          <p>To see all your uploads, check your <a href="/userprofile">profile.</a></p>
+          <p>To see all your uploads, check your <a href="/userprofile" id='see-profile'> profile.</a></p>
             {{#each streetArtByUser}}
               <div class="img-user-uploads">
                 <img src={{streetArtImgUrl}} alt="picture street art of" {{artist}} id="uploads-user">

@@ -422,17 +422,10 @@ if(map){
   
         const image = {
           url: streetart.streetArtImgUrl,
-          scaledSize: new google.maps.Size(50, 50),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(0, 20)
+          scaledSize: new google.maps.Size(60, 60),
+          anchor: new google.maps.Point(0, 30)
         }
-  
-        const shape = {
-          coords: [1, 1, 1, 20, 18, 20, 18, 1],
-          type: "poly",
-        }
-  
-    
+
         const contentString =
           `
           <div id='info-window'>
@@ -454,7 +447,6 @@ if(map){
           position: center,
           map: map,
           icon: image,
-          // shape: shape,
         });
   
         pins.push(pin)
